@@ -14,7 +14,8 @@ void setup()
   // Init. and start BLE library.
   ble_begin();
   
-  Serial.begin(9600);
+  // Usnig as fast as possible transmission, to keep the real time feedback
+  Serial.begin(115200);
 }
 
 void loop()
