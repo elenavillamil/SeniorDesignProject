@@ -28,22 +28,46 @@
 @synthesize _connection_label;
 @synthesize _height_slider;
 @synthesize _set_heigth_label;
+@synthesize _ten_cm_label;
+@synthesize _twenty_cm_label;
+@synthesize _thirty_cm_label;
+@synthesize _forty_cm_label;
+@synthesize _fifty_cm_label;
+@synthesize _sixty_cm_label;
+@synthesize _seventy_cm_label;
+@synthesize _eighty_cm_label;
+@synthesize _ninety_cm_label;
+@synthesize _hundred_cm_label;
+@synthesize _hundred_and_ten_cm_label;
+@synthesize _hundred_and_twenty_cm_label;
+@synthesize _hundred_and_thirty_cm_label;
+@synthesize _hundred_and_forty_cm_label;
+@synthesize _hundred_and_fifty_cm_label;
+@synthesize _acceleration_label;
+@synthesize _direction_label;
+@synthesize _heigth_label;
+@synthesize _status_label;
+@synthesize _velocity_label;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self._connection_label.text = @"Connecting...";
+    self._connection_label.text = @"";
     
-    m_ble_endpoint = [[BLE alloc] init];
-    [m_ble_endpoint controlSetup];
+    self._green_color = [UIColor colorWithRed:133.0/255.0 green:211.0/255.0 blue:127.0/255.0 alpha:1];
+
+    [self SetMainColors:(self._green_color)];
+ 
+    //m_ble_endpoint = [[BLE alloc] init];
+    //[m_ble_endpoint controlSetup];
     
     // Set up the delegate to be this class.
-    m_ble_endpoint.delegate = self;
+    //m_ble_endpoint.delegate = self;
     
     // Try to connect. In a different thread.
-    [self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
+    //[self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,9 +92,13 @@
 // Receiving and proccessing the Data
 - (void) bleDidReceiveData:(unsigned char *)data length:(int)length
 {
+    NSData* input_data = [NSData dataWithBytes:data length:length];
+    NSString* parsed_str = [[NSString alloc] initWithData:input_data encoding:NSUTF8StringEncoding];
     
+    NSLog(@"%@", parsed_str);
 }
 
+// Connecting to BRC (basketball robot controler) bluetooth.
 - (void) bleConnect:(id) param
 {
     self._connection_label.text = @"Connecting Please Wait...";
@@ -102,16 +130,119 @@
 }
 
 - (IBAction)onHeightSliderValueChange:(id)sender {
-    int current_value = self._height_slider.value;
-    NSString* value_string = [NSString stringWithFormat:@"%d", current_value];
-    value_string = [NSString stringWithFormat:@"%@\r\n", value_string];
-    NSData* data_to_send = [value_string dataUsingEncoding:NSUTF8StringEncoding];
-    self._set_heigth_label.text = value_string;
     
-    [m_ble_endpoint write:data_to_send];
+    int current_value = self._height_slider.value;
+    
+    // Setting the representation of the robot
+    [self SetLabelBackgroundOn:current_value];
+    [self SetLabelBackgroundOff:current_value];
+    
+    //Sending the new slider value to the Arduino
+    //NSString* value_string = [NSString stringWithFormat:@"%d", current_value];
+    //value_string = [NSString stringWithFormat:@"%@\r\n", value_string];
+    //NSData* data_to_send = [value_string dataUsingEncoding:NSUTF8StringEncoding];
+    //self._set_heigth_label.text = value_string;
+    //[m_ble_endpoint write:data_to_send];
     
 }
 
+-(void) SetMainColors:(UIColor*)color
+{
+    self._velocity.backgroundColor = color;
+    self._acceleration.backgroundColor = color;
+    self._height.backgroundColor = color;
+    self._status.backgroundColor = color;
+    self._direction.backgroundColor = color;
+    self._acceleration_label.backgroundColor = color;
+    self._direction_label.backgroundColor = color;
+    self._heigth_label.backgroundColor = color;
+    self._velocity_label.backgroundColor = color;
+    self._status_label.backgroundColor = color;
+    self._height_slider.minimumTrackTintColor = color;
+    self._height_slider.maximumTrackTintColor = color;
+}
+
+- (void) SetLabelBackgroundOn:(int)value
+{
+    if (value >= 10)
+        self._ten_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 20)
+        self._twenty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 30)
+        self._thirty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 40)
+        self._forty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 50)
+        self._fifty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 60)
+        self._sixty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 70)
+        self._seventy_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 80)
+        self._eighty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 90)
+        self._ninety_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 100)
+        self._hundred_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 110)
+        self._hundred_and_ten_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 120)
+        self._hundred_and_twenty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 130)
+        self._hundred_and_thirty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 140)
+        self._hundred_and_forty_cm_label.backgroundColor = [UIColor redColor];
+    
+    if (value >= 150)
+        self._hundred_and_fifty_cm_label.backgroundColor = [UIColor redColor];
+}
+
+- (void) SetLabelBackgroundOff:(int)value
+{
+    if (value < 150)
+        self._hundred_and_fifty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 140)
+        self._hundred_and_forty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 130)
+        self._hundred_and_thirty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 120)
+        self._hundred_and_twenty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 110)
+        self._hundred_and_ten_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 100)
+        self._hundred_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 90)
+        self._ninety_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 80)
+        self._eighty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 70)
+        self._seventy_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 60)
+        self._sixty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 50)
+        self._fifty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 40)
+        self._forty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 30)
+        self._thirty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 20)
+        self._twenty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 10)
+        self._ten_cm_label.backgroundColor = [UIColor whiteColor];
+}
 
 - (IBAction)Connect:(id)sender {
 }
