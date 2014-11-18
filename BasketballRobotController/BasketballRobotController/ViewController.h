@@ -17,6 +17,8 @@
 
 @property UIColor* _grey_color;
 
+@property bool _can_set_height;
+
 @property (weak, nonatomic) IBOutlet UISlider *_height_slider;
 
 @property (weak, nonatomic) IBOutlet UILabel *_set_heigth_label;
