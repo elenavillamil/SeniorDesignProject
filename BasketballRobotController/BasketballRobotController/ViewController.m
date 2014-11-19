@@ -162,6 +162,12 @@
         //[m_ble_endpoint write:data_to_send];
         
     }
+    else
+    {
+        UIAlertView* alert_view = [[UIAlertView alloc] initWithTitle:@"Invalid action" message:@"The robot is in the proccess of reaching the last spcified height, please wait until the height is reached before setting a new height." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+        [alert_view show];
+        self._height_slider.value = [self._set_heigth_label.text intValue];
+    }
     
     // else pop up with options.
 }

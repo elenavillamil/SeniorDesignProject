@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F3817AC01A095C6400485D12 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = F3817ABE1A095C6400485D12 /* BLE.m */; };
+		F3BADAEB1A1BE2E700A2DD3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BADAEA1A1BE2E700A2DD3B /* UIKit.framework */; };
+		F3BADAED1A1BE2EC00A2DD3B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BADAEC1A1BE2EC00A2DD3B /* QuartzCore.framework */; };
 		F3EEC5D01A02B5010051E5B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EEC5CF1A02B5010051E5B8 /* main.m */; };
 		F3EEC5D31A02B5010051E5B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EEC5D21A02B5010051E5B8 /* AppDelegate.m */; };
 		F3EEC5D61A02B5010051E5B8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EEC5D51A02B5010051E5B8 /* ViewController.m */; };
@@ -31,6 +33,8 @@
 		F3817ABD1A095C6400485D12 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		F3817ABE1A095C6400485D12 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		F3817ABF1A095C6400485D12 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		F3BADAEA1A1BE2E700A2DD3B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F3BADAEC1A1BE2EC00A2DD3B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F3EEC5CA1A02B5010051E5B8 /* BasketballRobotController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketballRobotController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3EEC5CE1A02B5010051E5B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3EEC5CF1A02B5010051E5B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3BADAED1A1BE2EC00A2DD3B /* QuartzCore.framework in Frameworks */,
+				F3BADAEB1A1BE2E700A2DD3B /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +84,8 @@
 		F3817AC21A095CFA00485D12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3BADAEC1A1BE2EC00A2DD3B /* QuartzCore.framework */,
+				F3BADAEA1A1BE2E700A2DD3B /* UIKit.framework */,
 				F3817ABC1A095C6400485D12 /* BLE */,
 			);
 			name = Frameworks;
