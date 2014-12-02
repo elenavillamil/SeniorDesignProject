@@ -55,7 +55,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self._connection_label.text = @"";
-    
+    self._status_label.text = @"Disconected";
+    self._can_set_height = true;
     self._green_color = [UIColor colorWithRed:133.0/255.0 green:211.0/255.0 blue:127.0/255.0 alpha:1];
     
     self._can_set_height = false;
@@ -80,7 +81,7 @@
 {
     self._connection_label.text = @"";
     self._status_label.text = @"On";
-    self._can_set_height = true;
+    self._bluetooth_connection = true;
     [self SetMainColors:(self._green_color)];
 }
 
@@ -88,8 +89,10 @@
 {
     self._connection_label.text = @"Disconnected.";
     self._status_label.text = @"Disconnected.";
-    [self SetMainColors:(self._grey_color)];
+    self._bluetooth_connection = false;
     
+    [self SetMainColors:(self._grey_color)];
+
     // Functionality to reconnect
     [self bleConnect:nil];
 }
@@ -162,9 +165,15 @@
         //[m_ble_endpoint write:data_to_send];
         
     }
+    else if (!self._bluetooth_connection)
+    {
+        UIAlertView* alert_view = [[UIAlertView alloc] initWithTitle:@"Invalid action" message:@"There is not Bluetooth connection with the Robot, please wait until the connection is stablished." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert_view show];
+        self._height_slider.value = [self._set_heigth_label.text intValue];
+    }
     else
     {
-        UIAlertView* alert_view = [[UIAlertView alloc] initWithTitle:@"Invalid action" message:@"The robot is in the proccess of reaching the last spcified height, please wait until the height is reached before setting a new height." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+        UIAlertView* alert_view = [[UIAlertView alloc] initWithTitle:@"Invalid action" message:@"The robot is in the proccess of reaching the last spcified height, please wait until the height is reached before setting a new height." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert_view show];
         self._height_slider.value = [self._set_heigth_label.text intValue];
     }

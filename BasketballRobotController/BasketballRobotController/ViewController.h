@@ -19,6 +19,8 @@
 
 @property bool _can_set_height;
 
+@property bool _bluetooth_connection;
+
 @property (weak, nonatomic) IBOutlet UISlider *_height_slider;
 
 @property (weak, nonatomic) IBOutlet UILabel *_set_heigth_label;

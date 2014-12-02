@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -383,7 +383,7 @@
                     <connections>
                         <outlet property="_acceleration" destination="ZR3-QP-SsG" id="XRz-9g-bPW"/>
                         <outlet property="_acceleration_label" destination="UfO-aF-Kp1" id="BRn-Vj-VNF"/>
-                        <outlet property="_connection_label" destination="QRP-0x-vxc" id="H1W-4q-cIo"/>
+                        <outlet property="_connection_label" destination="dpM-Y7-TuT" id="lUR-gk-WC0"/>
                         <outlet property="_direction" destination="hZx-IW-Jsh" id="HVk-dF-n7v"/>
                         <outlet property="_direction_label" destination="E9q-Nk-rkC" id="UyX-X5-qdI"/>
                         <outlet property="_eighty_cm_label" destination="ulA-5L-Bow" id="dgX-b0-ppO"/>
@@ -398,7 +398,7 @@
                         <outlet property="_hundred_and_thirty_cm_label" destination="ZaM-xt-dmx" id="Kqd-de-ose"/>
                         <outlet property="_hundred_and_twenty_cm_label" destination="EeI-gO-8Y3" id="HJL-h3-h3j"/>
                         <outlet property="_hundred_cm_label" destination="aMH-gP-27C" id="Qzv-BD-XPZ"/>
-                        <outlet property="_set_heigth_label" destination="l6V-TO-QLa" id="dSV-AJ-P27"/>
+                        <outlet property="_set_heigth_label" destination="l6V-TO-QLa" id="g8w-W8-OcK"/>
                         <outlet property="_seventy_cm_label" destination="wEu-9q-hBY" id="5Ke-lG-yEY"/>
                         <outlet property="_sixty_cm_label" destination="GUJ-MB-NiB" id="dfS-xF-htD"/>
                         <outlet property="_status" destination="lYa-eM-oyS" id="3jh-lD-dY3"/>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DD370995-95F3-460E-AABE-586AA50560E1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TestingArduinoPerformance</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E559E3D49FDA32A3BE8655638B8DB83B98C2DCBC</key>
+		<string>github.com:elenavillamil/SeniorDesignProject.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TestingArduinoPerformance/TestingArduinoPerformance/TestingArduinoPerformance.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E559E3D49FDA32A3BE8655638B8DB83B98C2DCBC</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:elenavillamil/SeniorDesignProject.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E559E3D49FDA32A3BE8655638B8DB83B98C2DCBC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E559E3D49FDA32A3BE8655638B8DB83B98C2DCBC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SeniorDesign</string>
+		</dict>
+	</array>
+</dict>
+</plist>

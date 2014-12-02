@@ -1,0 +1,459 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F3DDB1331A23BD8300EF0496 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB1321A23BD8300EF0496 /* main.m */; };
+		F3DDB1361A23BD8300EF0496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB1351A23BD8300EF0496 /* AppDelegate.m */; };
+		F3DDB1391A23BD8300EF0496 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB1381A23BD8300EF0496 /* ViewController.m */; };
+		F3DDB13C1A23BD8300EF0496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3DDB13A1A23BD8300EF0496 /* Main.storyboard */; };
+		F3DDB13E1A23BD8300EF0496 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DDB13D1A23BD8300EF0496 /* Images.xcassets */; };
+		F3DDB1411A23BD8300EF0496 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3DDB13F1A23BD8300EF0496 /* LaunchScreen.xib */; };
+		F3DDB14D1A23BD8300EF0496 /* TestingArduinoPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB14C1A23BD8300EF0496 /* TestingArduinoPerformanceTests.m */; };
+		F3DDB1571A23BDD900EF0496 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DDB1561A23BDD900EF0496 /* UIKit.framework */; };
+		F3DDB15D1A23BE1400EF0496 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB15B1A23BE1400EF0496 /* BLE.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F3DDB1471A23BD8300EF0496 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3DDB1251A23BD8300EF0496 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3DDB12C1A23BD8300EF0496;
+			remoteInfo = TestingArduinoPerformance;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F3DDB12D1A23BD8300EF0496 /* TestingArduinoPerformance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestingArduinoPerformance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3DDB1311A23BD8300EF0496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3DDB1321A23BD8300EF0496 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F3DDB1341A23BD8300EF0496 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F3DDB1351A23BD8300EF0496 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F3DDB1371A23BD8300EF0496 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F3DDB1381A23BD8300EF0496 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F3DDB13B1A23BD8300EF0496 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F3DDB13D1A23BD8300EF0496 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F3DDB1401A23BD8300EF0496 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F3DDB1461A23BD8300EF0496 /* TestingArduinoPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestingArduinoPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3DDB14B1A23BD8300EF0496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3DDB14C1A23BD8300EF0496 /* TestingArduinoPerformanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestingArduinoPerformanceTests.m; sourceTree = "<group>"; };
+		F3DDB1561A23BDD900EF0496 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F3DDB15A1A23BE1400EF0496 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
+		F3DDB15B1A23BE1400EF0496 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
+		F3DDB15C1A23BE1400EF0496 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F3DDB12A1A23BD8300EF0496 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DDB1571A23BDD900EF0496 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3DDB1431A23BD8300EF0496 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F3DDB1241A23BD8300EF0496 = {
+			isa = PBXGroup;
+			children = (
+				F3DDB12F1A23BD8300EF0496 /* TestingArduinoPerformance */,
+				F3DDB1491A23BD8300EF0496 /* TestingArduinoPerformanceTests */,
+				F3DDB12E1A23BD8300EF0496 /* Products */,
+				F3DDB1581A23BDEC00EF0496 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F3DDB12E1A23BD8300EF0496 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDB12D1A23BD8300EF0496 /* TestingArduinoPerformance.app */,
+				F3DDB1461A23BD8300EF0496 /* TestingArduinoPerformanceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3DDB12F1A23BD8300EF0496 /* TestingArduinoPerformance */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDB1341A23BD8300EF0496 /* AppDelegate.h */,
+				F3DDB1351A23BD8300EF0496 /* AppDelegate.m */,
+				F3DDB1371A23BD8300EF0496 /* ViewController.h */,
+				F3DDB1381A23BD8300EF0496 /* ViewController.m */,
+				F3DDB13A1A23BD8300EF0496 /* Main.storyboard */,
+				F3DDB13D1A23BD8300EF0496 /* Images.xcassets */,
+				F3DDB13F1A23BD8300EF0496 /* LaunchScreen.xib */,
+				F3DDB1301A23BD8300EF0496 /* Supporting Files */,
+			);
+			path = TestingArduinoPerformance;
+			sourceTree = "<group>";
+		};
+		F3DDB1301A23BD8300EF0496 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDB1311A23BD8300EF0496 /* Info.plist */,
+				F3DDB1321A23BD8300EF0496 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3DDB1491A23BD8300EF0496 /* TestingArduinoPerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDB14C1A23BD8300EF0496 /* TestingArduinoPerformanceTests.m */,
+				F3DDB14A1A23BD8300EF0496 /* Supporting Files */,
+			);
+			path = TestingArduinoPerformanceTests;
+			sourceTree = "<group>";
+		};
+		F3DDB14A1A23BD8300EF0496 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDB14B1A23BD8300EF0496 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3DDB1581A23BDEC00EF0496 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDB1591A23BE1400EF0496 /* BLE */,
+				F3DDB1561A23BDD900EF0496 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3DDB1591A23BE1400EF0496 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDB15A1A23BE1400EF0496 /* BLE.h */,
+				F3DDB15B1A23BE1400EF0496 /* BLE.m */,
+				F3DDB15C1A23BE1400EF0496 /* BLEDefines.h */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F3DDB12C1A23BD8300EF0496 /* TestingArduinoPerformance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3DDB1501A23BD8300EF0496 /* Build configuration list for PBXNativeTarget "TestingArduinoPerformance" */;
+			buildPhases = (
+				F3DDB1291A23BD8300EF0496 /* Sources */,
+				F3DDB12A1A23BD8300EF0496 /* Frameworks */,
+				F3DDB12B1A23BD8300EF0496 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestingArduinoPerformance;
+			productName = TestingArduinoPerformance;
+			productReference = F3DDB12D1A23BD8300EF0496 /* TestingArduinoPerformance.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F3DDB1451A23BD8300EF0496 /* TestingArduinoPerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3DDB1531A23BD8300EF0496 /* Build configuration list for PBXNativeTarget "TestingArduinoPerformanceTests" */;
+			buildPhases = (
+				F3DDB1421A23BD8300EF0496 /* Sources */,
+				F3DDB1431A23BD8300EF0496 /* Frameworks */,
+				F3DDB1441A23BD8300EF0496 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3DDB1481A23BD8300EF0496 /* PBXTargetDependency */,
+			);
+			name = TestingArduinoPerformanceTests;
+			productName = TestingArduinoPerformanceTests;
+			productReference = F3DDB1461A23BD8300EF0496 /* TestingArduinoPerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F3DDB1251A23BD8300EF0496 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Maria Elena Villamil";
+				TargetAttributes = {
+					F3DDB12C1A23BD8300EF0496 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					F3DDB1451A23BD8300EF0496 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = F3DDB12C1A23BD8300EF0496;
+					};
+				};
+			};
+			buildConfigurationList = F3DDB1281A23BD8300EF0496 /* Build configuration list for PBXProject "TestingArduinoPerformance" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F3DDB1241A23BD8300EF0496;
+			productRefGroup = F3DDB12E1A23BD8300EF0496 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3DDB12C1A23BD8300EF0496 /* TestingArduinoPerformance */,
+				F3DDB1451A23BD8300EF0496 /* TestingArduinoPerformanceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3DDB12B1A23BD8300EF0496 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DDB13C1A23BD8300EF0496 /* Main.storyboard in Resources */,
+				F3DDB1411A23BD8300EF0496 /* LaunchScreen.xib in Resources */,
+				F3DDB13E1A23BD8300EF0496 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3DDB1441A23BD8300EF0496 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F3DDB1291A23BD8300EF0496 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DDB1391A23BD8300EF0496 /* ViewController.m in Sources */,
+				F3DDB1361A23BD8300EF0496 /* AppDelegate.m in Sources */,
+				F3DDB1331A23BD8300EF0496 /* main.m in Sources */,
+				F3DDB15D1A23BE1400EF0496 /* BLE.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3DDB1421A23BD8300EF0496 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DDB14D1A23BD8300EF0496 /* TestingArduinoPerformanceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F3DDB1481A23BD8300EF0496 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3DDB12C1A23BD8300EF0496 /* TestingArduinoPerformance */;
+			targetProxy = F3DDB1471A23BD8300EF0496 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F3DDB13A1A23BD8300EF0496 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3DDB13B1A23BD8300EF0496 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F3DDB13F1A23BD8300EF0496 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3DDB1401A23BD8300EF0496 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F3DDB14E1A23BD8300EF0496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F3DDB14F1A23BD8300EF0496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3DDB1511A23BD8300EF0496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TestingArduinoPerformance/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F3DDB1521A23BD8300EF0496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TestingArduinoPerformance/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F3DDB1541A23BD8300EF0496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TestingArduinoPerformanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestingArduinoPerformance.app/TestingArduinoPerformance";
+			};
+			name = Debug;
+		};
+		F3DDB1551A23BD8300EF0496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TestingArduinoPerformanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestingArduinoPerformance.app/TestingArduinoPerformance";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F3DDB1281A23BD8300EF0496 /* Build configuration list for PBXProject "TestingArduinoPerformance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3DDB14E1A23BD8300EF0496 /* Debug */,
+				F3DDB14F1A23BD8300EF0496 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3DDB1501A23BD8300EF0496 /* Build configuration list for PBXNativeTarget "TestingArduinoPerformance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3DDB1511A23BD8300EF0496 /* Debug */,
+				F3DDB1521A23BD8300EF0496 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3DDB1531A23BD8300EF0496 /* Build configuration list for PBXNativeTarget "TestingArduinoPerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3DDB1541A23BD8300EF0496 /* Debug */,
+				F3DDB1551A23BD8300EF0496 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F3DDB1251A23BD8300EF0496 /* Project object */;
+}
