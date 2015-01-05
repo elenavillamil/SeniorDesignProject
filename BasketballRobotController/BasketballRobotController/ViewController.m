@@ -37,14 +37,14 @@
 @synthesize _seventy_cm_label;
 @synthesize _eighty_cm_label;
 @synthesize _ninety_cm_label;
-@synthesize _hundred_cm_label;
-@synthesize _hundred_and_ten_cm_label;
-@synthesize _hundred_and_twenty_cm_label;
-@synthesize _hundred_and_thirty_cm_label;
-@synthesize _hundred_and_forty_cm_label;
-@synthesize _hundred_and_fifty_cm_label;
+//@synthesize _hundred_cm_label;
+//@synthesize _hundred_and_ten_cm_label;
+//@synthesize _hundred_and_twenty_cm_label;
+//@synthesize _hundred_and_thirty_cm_label;
+//@synthesize _hundred_and_forty_cm_label;
+//@synthesize _hundred_and_fifty_cm_label;
 @synthesize _acceleration_label;
-@synthesize _direction_label;
+//@synthesize _direction_label;
 @synthesize _heigth_label;
 @synthesize _status_label;
 @synthesize _velocity_label;
@@ -58,9 +58,10 @@
     self._status_label.text = @"Disconected";
     self._can_set_height = true;
     self._green_color = [UIColor colorWithRed:133.0/255.0 green:211.0/255.0 blue:127.0/255.0 alpha:1];
+    self._grey_color = [UIColor colorWithRed:188.0/255.0 green:188.0/255.0 blue:188.0/255.0 alpha:1];
     
     self._can_set_height = false;
-    
+    self._bluetooth_connection = false;
     //m_ble_endpoint = [[BLE alloc] init];
     //[m_ble_endpoint controlSetup];
     
@@ -187,9 +188,9 @@
     self._acceleration.backgroundColor = color;
     self._height.backgroundColor = color;
     self._status.backgroundColor = color;
-    self._direction.backgroundColor = color;
+    //self._direction.backgroundColor = color;
     self._acceleration_label.backgroundColor = color;
-    self._direction_label.backgroundColor = color;
+    //self._direction_label.backgroundColor = color;
     self._heigth_label.backgroundColor = color;
     self._velocity_label.backgroundColor = color;
     self._status_label.backgroundColor = color;
@@ -229,6 +230,7 @@
     if (value >= 100)
         self._hundred_cm_label.backgroundColor = self._green_color;
     
+    /*
     if (value >= 110)
         self._hundred_and_ten_cm_label.backgroundColor = self._green_color;
     
@@ -243,10 +245,12 @@
     
     if (value >= 150)
         self._hundred_and_fifty_cm_label.backgroundColor = self._green_color;
+     */
 }
 
 - (void) SetLabelBackgroundOff:(int)value
 {
+    /*
     if (value < 150)
         self._hundred_and_fifty_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 140)
@@ -257,6 +261,8 @@
         self._hundred_and_twenty_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 110)
         self._hundred_and_ten_cm_label.backgroundColor = [UIColor whiteColor];
+     */
+    
     if (value < 100)
         self._hundred_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 90)

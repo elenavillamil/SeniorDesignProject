@@ -21,6 +21,7 @@
 
 @property bool _bluetooth_connection;
 
+
 @property (weak, nonatomic) IBOutlet UISlider *_height_slider;
 
 @property (weak, nonatomic) IBOutlet UILabel *_set_heigth_label;
@@ -31,8 +32,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *_velocity_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_direction_label;
-
 @property (weak, nonatomic) IBOutlet UILabel *_acceleration_label;
 
 @property (weak, nonatomic) IBOutlet UILabel *_status;
@@ -40,8 +39,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *_height;
 
 @property (weak, nonatomic) IBOutlet UILabel *_velocity;
-
-@property (weak, nonatomic) IBOutlet UILabel *_direction;
 
 @property (weak, nonatomic) IBOutlet UILabel *_acceleration;
 
@@ -67,15 +64,15 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *_hundred_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_ten_cm_label;
+//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_ten_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_twenty_cm_label;
+//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_twenty_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_thirty_cm_label;
+//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_thirty_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_forty_cm_label;
+//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_forty_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_fifty_cm_label;
+//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_fifty_cm_label;
 
 - (IBAction)onHeightSliderValueChange:(id)sender;
 

@@ -195,6 +195,7 @@
 				TargetAttributes = {
 					F3DDB12C1A23BD8300EF0496 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 2P62NT5ZCM;
 					};
 					F3DDB1451A23BD8300EF0496 = {
 						CreatedOnToolsVersion = 6.1;
@@ -375,6 +376,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -386,6 +388,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
