@@ -1,21 +1,13 @@
 //
-//  ViewController.m
-//  BasketballRobotController
+//  Project: BasketballRobotController
+//  File: ViewController.m
+//  Author: Maria Elena Villamil Rodriguez
+//  Version: 1.0
 //
-//  Created by Maria Elena Villamil on 10/30/14.
-//  Copyright (c) 2014 Maria Elena Villamil. All rights reserved.
+//  Description: This file has the code to control the functionality of the application.
+//  Notes: BLE related code was provided by Professor Eric Larson.
 //
 
-
-//
-//  ViewController.m
-//  DistanceAppM
-//
-//  Created by Cheong on 15/8/12.
-//  Modified by Eric Larson, 2014
-//  Modified by Maria Elena Villamil, 2014
-//  Copyright (c) 2014 Maria Elena Villamil. All rights reserved.
-//
 
 #import "ViewController.h"
 
@@ -52,23 +44,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
+    // Setting member variables to its initial values
     self._connection_label.text = @"";
     self._status_label.text = @"Disconected";
     self._can_set_height = true;
-    self._green_color = [UIColor colorWithRed:133.0/255.0 green:211.0/255.0 blue:127.0/255.0 alpha:1];
-    self._grey_color = [UIColor colorWithRed:188.0/255.0 green:188.0/255.0 blue:188.0/255.0 alpha:1];
+    self._green_color = [UIColor colorWithRed:133.0/255.0 green:211.0/255.0
+                                         blue:127.0/255.0 alpha:1];
+    self._grey_color = [UIColor colorWithRed:188.0/255.0 green:188.0/255.0
+                                        blue:188.0/255.0 alpha:1];
     
     self._can_set_height = false;
     self._bluetooth_connection = false;
-    //m_ble_endpoint = [[BLE alloc] init];
-    //[m_ble_endpoint controlSetup];
     
     // Set up the delegate to be this class.
     //m_ble_endpoint.delegate = self;
-    
-    // Try to connect. In a different thread.
+
+    // Initializing the bluetooth.
+    //m_ble_endpoint = [[BLE alloc] init];
+    //[m_ble_endpoint controlSetup];
+
+    // Try to connect. This happens in a different thread.
     //[self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
 }
 
@@ -152,22 +148,21 @@
     if (self._can_set_height)
     {
         int current_value = self._height_slider.value;
-        NSNumber* ns_current_value = [[NSNumber alloc] initWithInt:current_value];
         
-        // Set the label that indicates the ehigth
-        
+        // Set the label that indicates the new heigth
         self._set_heigth_label.text = [[NSString alloc] initWithFormat:@"%d", current_value];
         
+        // Getting the height in a byte so it can be send
+        NSData* data_to_send = [NSData dataWithBytes:&current_value length: 1];
+        
         //Sending the new slider value to the Arduino
-        //NSString* value_string = [NSString stringWithFormat:@"New Height: %d", current_value];
-        //value_string = [NSString stringWithFormat:@"%@\r\n", value_string];
-        //NSData* data_to_send = [value_string dataUsingEncoding:NSUTF8StringEncoding];
-        //self._set_heigth_label.text = value_string;
-        //[m_ble_endpoint write:data_to_send];
+        [m_ble_endpoint write:data_to_send];
         
     }
     else if (!self._bluetooth_connection)
     {
+        // Making and showing pop up to let the user know it cannot use the application
+        // until a connection is stablished.
         UIAlertView* alert_view = [[UIAlertView alloc] initWithTitle:@"Invalid action" message:@"There is not Bluetooth connection with the Robot, please wait until the connection is stablished." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert_view show];
         self._height_slider.value = [self._set_heigth_label.text intValue];
@@ -178,10 +173,10 @@
         [alert_view show];
         self._height_slider.value = [self._set_heigth_label.text intValue];
     }
-    
-    // else pop up with options.
 }
 
+// Set the colors of the labels and the slider to either grey or green.
+// Grey if there app is connected to the robot, and green if there is no connection.
 -(void) SetMainColors:(UIColor*)color
 {
     self._velocity.backgroundColor = color;
@@ -198,6 +193,7 @@
     self._height_slider.maximumTrackTintColor = color;
 }
 
+// Sets to green the height values that are smaller than the value passed in.
 - (void) SetLabelBackgroundOn:(int)value
 {
     if (value >= 10)
@@ -248,6 +244,7 @@
      */
 }
 
+// Sets to white the height values that are bigger than the number passed in.
 - (void) SetLabelBackgroundOff:(int)value
 {
     /*
@@ -285,8 +282,6 @@
         self._ten_cm_label.backgroundColor = [UIColor whiteColor];
 }
 
-- (IBAction)Connect:(id)sender {
-}
 @end
 
 
