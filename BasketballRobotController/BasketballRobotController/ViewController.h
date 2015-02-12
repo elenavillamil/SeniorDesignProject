@@ -22,6 +22,8 @@
 @property bool _bluetooth_connection;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *_off_on_button;
+
 @property (weak, nonatomic) IBOutlet UISlider *_height_slider;
 
 @property (weak, nonatomic) IBOutlet UILabel *_set_heigth_label;
@@ -75,6 +77,8 @@
 //@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_fifty_cm_label;
 
 - (IBAction)onHeightSliderValueChange:(id)sender;
+
+- (IBAction)onOffButtonPressed:(id)sender;
 
 @end
 

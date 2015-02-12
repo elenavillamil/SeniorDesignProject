@@ -17,36 +17,12 @@
 
 @implementation ViewController
 
-@synthesize _connection_label;
-@synthesize _height_slider;
-@synthesize _set_heigth_label;
-@synthesize _ten_cm_label;
-@synthesize _twenty_cm_label;
-@synthesize _thirty_cm_label;
-@synthesize _forty_cm_label;
-@synthesize _fifty_cm_label;
-@synthesize _sixty_cm_label;
-@synthesize _seventy_cm_label;
-@synthesize _eighty_cm_label;
-@synthesize _ninety_cm_label;
-//@synthesize _hundred_cm_label;
-//@synthesize _hundred_and_ten_cm_label;
-//@synthesize _hundred_and_twenty_cm_label;
-//@synthesize _hundred_and_thirty_cm_label;
-//@synthesize _hundred_and_forty_cm_label;
-//@synthesize _hundred_and_fifty_cm_label;
-@synthesize _acceleration_label;
-//@synthesize _direction_label;
-@synthesize _heigth_label;
-@synthesize _status_label;
-@synthesize _velocity_label;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // Setting member variables to its initial values
-    self._connection_label.text = @"";
     self._status_label.text = @"Disconected";
     self._can_set_height = true;
     self._green_color = [UIColor colorWithRed:133.0/255.0 green:211.0/255.0
@@ -76,7 +52,6 @@
 
 -(void) bleDidConnect
 {
-    self._connection_label.text = @"";
     self._status_label.text = @"On";
     self._bluetooth_connection = true;
     [self SetMainColors:(self._green_color)];
@@ -84,7 +59,6 @@
 
 -(void) bleDidDisconnect
 {
-    self._connection_label.text = @"Disconnected.";
     self._status_label.text = @"Disconnected.";
     self._bluetooth_connection = false;
     
@@ -115,7 +89,7 @@
 // Connecting to BRC (basketball robot controler) bluetooth.
 - (void) bleConnect:(id) param
 {
-    self._connection_label.text = @"Connecting Please Wait...";
+    self._status_label.text = @"Connecting...";
     
     [NSThread sleepForTimeInterval:.5f];
     
@@ -172,6 +146,34 @@
         UIAlertView* alert_view = [[UIAlertView alloc] initWithTitle:@"Invalid action" message:@"The robot is in the proccess of reaching the last spcified height, please wait until the height is reached before setting a new height." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert_view show];
         self._height_slider.value = [self._set_heigth_label.text intValue];
+    }
+}
+
+- (IBAction)onOffButtonPressed:(id)sender {
+    // Send 150 as new distnace to the robot.
+    
+    if ([[self._off_on_button titleForState:UIControlStateNormal ]  isEqual: @"Off" ])
+    {
+        self._status.text = @"Disconnected";
+        self._bluetooth_connection = false;
+        self._can_set_height = false;
+    
+        [self._off_on_button setBackgroundColor:[UIColor greenColor]];
+        [self._off_on_button setTitle:@"On" forState:UIControlStateNormal];
+
+    }
+    else
+    {
+        if (!m_ble_endpoint.isConnected)
+        {
+            //[self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
+        }
+        
+        self._status.text = @"Connected";
+        self._bluetooth_connection = true;
+        self._can_set_height = true;
+        [self._off_on_button setBackgroundColor:[UIColor redColor]];
+        [self._off_on_button setTitle:@"Off" forState:UIControlStateNormal];
     }
 }
 
