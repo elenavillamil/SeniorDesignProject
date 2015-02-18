@@ -1,22 +1,50 @@
+#include <SPI.h>
+#include <boards.h>
+#include <ble_shield.h>
+#include <services.h>
+#include <RBL_nRF8001.h>
+
+const int MAX_SIZE = 4;
 int pulses = 0;
 int A_SIG = 0;
 int B_SIG = 1;
 
+unsigned char str[MAX_SIZE];
+
 void setup() {
   attachInterrupt(1, A_RISE, RISING);
   //attachInterrupt(0, B_RISE, RISING);
+  
+  // Setting up bluetooth
+  ble_set_name("ev9");
+  ble_begin();
   
   Serial.begin(57600);
 }
 
 void loop()
 {
+  unsigned char str[MAX_SIZE];
+  String num_string = String(pulses);
+  
+  for (int i = 0; i < num_string.length() && MAX_SIZE; i++)
+      str[i] = num_string[i];
+  
+  if (ble_connected())
+  {
+    ble_write_bytes(str, num_string.length());
+  }
+
+  ble_do_events();
 }
 
 void A_RISE() {
   detachInterrupt(1);
   A_SIG = 1;
-  
+  if (pulses > 150)
+  {
+    pulses = 0;
+  }
   // Direction detection
   //if (B_SIG = 0)
   //{

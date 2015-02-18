@@ -23,7 +23,7 @@
     [super viewDidLoad];
     
     // Setting member variables to its initial values
-    self._status_label.text = @"Disconected";
+    self._status.text = @"Disconected";
     self._can_set_height = true;
     self._green_color = [UIColor colorWithRed:133.0/255.0 green:211.0/255.0
                                          blue:127.0/255.0 alpha:1];
@@ -34,14 +34,14 @@
     self._bluetooth_connection = false;
     
     // Set up the delegate to be this class.
-    //m_ble_endpoint.delegate = self;
+    m_ble_endpoint.delegate = self;
 
     // Initializing the bluetooth.
-    //m_ble_endpoint = [[BLE alloc] init];
-    //[m_ble_endpoint controlSetup];
+    m_ble_endpoint = [[BLE alloc] init];
+    [m_ble_endpoint controlSetup];
 
     // Try to connect. This happens in a different thread.
-    //[self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
+    [self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,15 +52,17 @@
 
 -(void) bleDidConnect
 {
-    self._status_label.text = @"On";
+    self._status.text = @"On";
     self._bluetooth_connection = true;
+    self._can_set_height = true;
     [self SetMainColors:(self._green_color)];
 }
 
 -(void) bleDidDisconnect
 {
-    self._status_label.text = @"Disconnected.";
+    self._status.text = @"Disconnected.";
     self._bluetooth_connection = false;
+    self._can_set_height = true;
     
     [self SetMainColors:(self._grey_color)];
 
@@ -89,7 +91,7 @@
 // Connecting to BRC (basketball robot controler) bluetooth.
 - (void) bleConnect:(id) param
 {
-    self._status_label.text = @"Connecting...";
+    self._status.text = @"Connecting...";
     
     [NSThread sleepForTimeInterval:.5f];
     
