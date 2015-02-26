@@ -41,7 +41,7 @@
     m_ble_endpoint.delegate = self;
     
     // Try to connect. This happens in a different thread.
-    [self performSelector:@selector(bleConnect:) withObject:nil];
+    [self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
 }
 
 - (void)didReceiveMemoryWarning
