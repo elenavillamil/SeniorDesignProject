@@ -16,7 +16,7 @@ void setup() {
   //attachInterrupt(0, B_RISE, RISING);
   
   // Setting up bluetooth
-  ble_set_name("ev9");
+  ble_set_name("BRC");
   ble_begin();
   
   Serial.begin(57600);
@@ -24,6 +24,7 @@ void setup() {
 
 void loop()
 {
+  /*
   unsigned char str[MAX_SIZE];
   String num_string = String(pulses);
   
@@ -35,6 +36,7 @@ void loop()
     ble_write_bytes(str, num_string.length());
   }
 
+*/
   ble_do_events();
 }
 

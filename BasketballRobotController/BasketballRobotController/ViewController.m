@@ -32,16 +32,16 @@
     
     self._can_set_height = false;
     self._bluetooth_connection = false;
-    
-    // Set up the delegate to be this class.
-    m_ble_endpoint.delegate = self;
 
     // Initializing the bluetooth.
     m_ble_endpoint = [[BLE alloc] init];
     [m_ble_endpoint controlSetup];
 
+    // Set up the delegate to be this class.
+    m_ble_endpoint.delegate = self;
+    
     // Try to connect. This happens in a different thread.
-    [self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
+    [self performSelector:@selector(bleConnect:) withObject:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,7 +62,7 @@
 {
     self._status.text = @"Disconnected.";
     self._bluetooth_connection = false;
-    self._can_set_height = true;
+    self._can_set_height = false;
     
     [self SetMainColors:(self._grey_color)];
 
@@ -91,7 +91,7 @@
 // Connecting to BRC (basketball robot controler) bluetooth.
 - (void) bleConnect:(id) param
 {
-    self._status.text = @"Connecting...";
+    //self._status.text = @"Connecting...";
     
     [NSThread sleepForTimeInterval:.5f];
     
