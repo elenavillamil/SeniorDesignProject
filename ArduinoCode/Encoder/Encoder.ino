@@ -24,7 +24,7 @@ void setup() {
 
 void loop()
 {
-  /*
+  
   unsigned char str[MAX_SIZE];
   String num_string = String(pulses);
   
@@ -33,10 +33,11 @@ void loop()
   
   if (ble_connected())
   {
+    //Serial.println(pulses);
     ble_write_bytes(str, num_string.length());
   }
 
-*/
+  delay(20);
   ble_do_events();
 }
 
@@ -57,7 +58,7 @@ void A_RISE() {
     //pulses--;
   //}
   
-  Serial.println(pulses);
+  //Serial.println(pulses);
   
   // Once A it is a 5v, the only option is for it to fall
   // This way if we miss an interrupt we dont wrongly change direction
