@@ -1,4 +1,4 @@
-// messing with git
+// Code to test performance of one chanel encoder with bluetooth.
 
 #include <SPI.h>
 #include <boards.h>
