@@ -1,4 +1,3 @@
-// Author: Maria Elena Villamil
 // Code to test performance of one chanel encoder with bluetooth.
 
 #include <SPI.h>
