@@ -4,8 +4,8 @@ const int encoder0PinA = 2;
 const int encoder0PinB = 3;
 
 int encoder0Pos = 0;
-const int statusOutA = 4;
-const int statusOutB = 5;
+//const int statusOutA = 4;
+//const int statusOutB = 5;
 const int directionUp = 6;
 int stepSize = 3;
 int servoPin = 9;
@@ -13,7 +13,7 @@ Servo servo;
 int number = 0;
 int position1 = 0;
 int position2 = 0;
-int velocity=0;
+int velocity =0;
 int timestep = 50;
 int INA = 6;
 int INB = 7;
@@ -39,9 +39,9 @@ void setup() {
   attachInterrupt(1, doEncoderB, CHANGE);  // encoder pin on interrupt 1 - pin 3
   Serial.begin (9600);
   Serial.println("start");                // a personal quirk
-  pinMode(statusOutA, OUTPUT);
-  pinMode(statusOutB, OUTPUT);
-  pinMode(directionUp, OUTPUT);
+ // pinMode(statusOutA, OUTPUT);
+ // pinMode(statusOutB, OUTPUT);
+ // pinMode(directionUp, OUTPUT);
   servo.attach(servoPin);
 } 
 
@@ -51,7 +51,7 @@ void loop(){
   if (encoder0Pos <0) {encoder0Pos=0;}
   if (encoder0Pos > 162) {encoder0Pos = 162;}
   servo.write(angle);
-  motorA(1,encoder0Pos)
+  motorA(1,encoder0Pos);
   
   
   //position1=encoder0Pos;
