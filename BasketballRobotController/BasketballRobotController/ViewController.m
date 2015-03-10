@@ -76,12 +76,37 @@
     NSData* input_data = [NSData dataWithBytes:data length:length];
     NSString* parsed_str = [[NSString alloc] initWithData:input_data encoding:NSUTF8StringEncoding];
     
+    NSString* velocity_str = [[NSString alloc] init];
+    NSString* position_str = [[NSString alloc] init];
+
     // Debug log
     NSLog(@"%@", parsed_str);
     
+    int i = 0;
+    while([parsed_str characterAtIndex:i] != '-')
+    {
+        i++;
+    }
+    
+    int j = i + 1;
+    
+    while([parsed_str characterAtIndex:j] != '\n')
+    {
+        j++;
+    }
+    
+    velocity_str = [parsed_str substringToIndex:i];
+    NSRange positionRange = NSMakeRange(i+1, j - 1 - i);
+    
+    position_str = [parsed_str substringWithRange:positionRange];
+    
     NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber* distance = [formatter numberFromString:parsed_str];
+    NSNumber* distance = [formatter numberFromString:position_str];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self._velocity.text = velocity_str;
+    });
     
     // Setting the representation of the robot
     [self SetLabelBackgroundOn:distance.intValue];
@@ -198,7 +223,7 @@
 }
 
 // Sets to green the height values that are smaller than the value passed in.
-- (void) SetLabelBackgroundOn:(int)value
+- (void) SetLabelBackgroundOn:(NSInteger)value
 {
     if (value >= 10)
         self._ten_cm_label.backgroundColor = self._green_color;
@@ -249,7 +274,7 @@
 }
 
 // Sets to white the height values that are bigger than the number passed in.
-- (void) SetLabelBackgroundOff:(int)value
+- (void) SetLabelBackgroundOff:(NSInteger)value
 {
     /*
     if (value < 150)
