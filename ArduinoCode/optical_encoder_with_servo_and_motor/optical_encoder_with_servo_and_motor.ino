@@ -35,8 +35,8 @@ void setup() {
 
 
 
-  attachInterrupt(0, doEncoderA, CHANGE);  // encoder pin on interrupt 0 - pin 2
-  attachInterrupt(1, doEncoderB, CHANGE);  // encoder pin on interrupt 1 - pin 3
+  attachInterrupt(2, doEncoderA, CHANGE);  // encoder interrupt on pin 2
+  attachInterrupt(3, doEncoderB, CHANGE);  // encoder interrupt on pin 3
   Serial.begin (9600);
   Serial.println("start");                // a personal quirk
  // pinMode(statusOutA, OUTPUT);

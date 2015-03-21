@@ -25,8 +25,8 @@ void setup() {
   pinMode(encoder0PinB, INPUT); 
   //digitalWrite(encoder0PinB, HIGH);       // turn on pullup resistor
  
-  attachInterrupt(0, doEncoderA, CHANGE);  // encoder pin on interrupt 0 - pin 2
-  attachInterrupt(1, doEncoderB, CHANGE);  // encoder pin on interrupt 1 - pin 3
+  attachInterrupt(2, doEncoderA, CHANGE);  // encoder pin on interrupt 0 - pin 2
+  attachInterrupt(3, doEncoderB, CHANGE);  // encoder pin on interrupt 1 - pin 3
   Serial.begin (9600);
   Serial.println("start");                // a personal quirk
   pinMode(statusOutA, OUTPUT);
@@ -45,7 +45,7 @@ void loop(){
   //velocity = (position2-position1)/(timestep*.001*3);
   //Serial.println (encoder0Pos, DEC); 
   //Serial.println (velocity, DEC); 
-  Serial.println (number, DEC);     
+  Serial.println (encoder0Pos, DEC);     
   if (encoder0Pos <0) {encoder0Pos=0;}
 }
 

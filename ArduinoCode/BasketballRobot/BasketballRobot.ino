@@ -1,97 +1,95 @@
 #include <Servo.h>
-#include <SPI.h>
-#include <boards.h>
-#include <ble_shield.h>
-#include <services.h>
-#include <RBL_nRF8001.h>
+//#include <SPI.h>
+//#include <boards.h>
+//#include <ble_shield.h>
+//#include <services.h>
+//#include <RBL_nRF8001.h>
 
 // char* to send thorugh bluetooth
 const int MAX_SIZE = 10;
 unsigned char toSend[MAX_SIZE];
 
-// Setting up pins
 const int encoder0PinA = 2;
 const int encoder0PinB = 3;
-const int fiveVoltPin = 5;
-const int servoPin = 9;
-
-Servo servo; 
-
 int encoder0Pos = 0;
-//const int statusOutA = 4;
-//const int statusOutB = 5;
-const int directionUp = 6;
-int stepSize = 1;
-int number = 0;
-int timestep = 250;
-int INA = 6;
-int INB = 7;
+
+const int encoder1PinA = 51;
+const int encoder1PinB = 47;
+int encoder1Pos = 0;
+
+// Encoder Pins
+//int INA = 7;
+//int INB = 8;
+//int fiveVolt = 6;
+
+int stepSize = 3;
+int servoPin = 9;
+Servo servo;
+
+int timestep = 50;
 
 
 void setup() { 
-  // Setting up input pins
-  pinMode(encoder0PinA, INPUT); 
-  pinMode(encoder0PinB, INPUT); 
-  
-  
+ 
+  // Setting up servo
   servo.attach(servoPin);
 
-  
-  // Setting up output pins
-  pinMode(fiveVoltPin, OUTPUT);
-  pinMode(INA, OUTPUT);
-  pinMode(INB, OUTPUT);
-
   // Setting up bluetooth
-  ble_set_name("BRC");
-  ble_begin();
+  //ble_set_name("BRC");
+  //ble_begin();
+
+  // chanel A (encoder 0) interrupts to pin 0
+  attachInterrupt(2, doEncoder0ChanelA, CHANGE);
+  // chanel B (encoder 0) interrupts to pin 3
+  attachInterrupt(3, doEncoder0ChanelB, CHANGE);
+  // chanel A (encoder 1) interrupts to pin 4
+  attachInterrupt(51, doEncoder1ChanelA, CHANGE);
+  // chanel B (encoder 1) interrupts to pin 5
+  attachInterrupt(47, doEncoder1ChanelB, CHANGE);
   
-  // Encoder pin on interrupt 0 - pin 2
-  attachInterrupt(0, doEncoderA, CHANGE);
-  // Encoder pin on interrupt 1 - pin 3
-  attachInterrupt(1, doEncoderB, CHANGE);  
+  //pinMode(fiveVolt, OUTPUT);
+  //pinMode(INA, OUTPUT);
+  //pinMode(INB, OUTPUT);
   
-  // Starting Serial
   Serial.begin (9600);
   
-  // For Debug pruporses
-  Serial.println("start");
+  //Serial.println("start");                // a personal quirk
 } 
 
 void loop(){
-     
-  if (encoder0Pos <0) 
-  {
-    encoder0Pos=0;
-  }
   
-  if (encoder0Pos > 54) 
-  {
-    encoder0Pos = 54;
-  }
-  
-  int position1 = encoder0Pos;
-  motorA(1, position1);
-  
-  position1 = encoder0Pos;
+  // Get velocity
+  //position1=encoder0Pos;
   delay(timestep);
-  int position2 = encoder0Pos;
-  
-  int velocity = (position2-position1)/(timestep*.001);
-  
+  //position2 = encoder0Pos;
+  //velocity = (position2-position1)/(timestep*.001*3);
   //Serial.println (encoder0Pos, DEC); 
   //Serial.println (velocity, DEC); 
+  //Serial.println (encoder0Pos, DEC);     
+  if (encoder0Pos < 0) 
+  {
+    encoder0Pos = 0;
+  }
+  
+  if (encoder1Pos < 0)
+  {
+    encoder1Pos = 0;
+  }
+  
+  Serial.println(encoder1Pos);
+  //motorA(1,encoder1Pos);
   
   // Convert int velocity to char*
-  String velocityString = String(velocity);
-  String positionString = String(position2);
-  String stringToSend = velocityString + '-' + positionString + '\n';
+  //String velocityString = String(velocity);
+  //String positionString = String(encoder0Pos);
+  //String stringToSend = velocityString + '-' + positionString + '\n';
   
-  Serial.println(velocity);
-  servo.write(position2+5);
-  Serial.println(stringToSend);
+  servo.write(encoder0Pos+5);
+  //Serial.println(stringToSend);
   
-  for (int i = 0; i < stringToSend.length() && MAX_SIZE; i++)
+  // Code ot send the position to the iPad
+  /*
+  for (int i = 0; i < positionString.length() && MAX_SIZE; i++)
   {
     toSend[i] = stringToSend[i];
   }
@@ -102,92 +100,12 @@ void loop(){
   }
   
   ble_do_events();
+  */
 }
 
-
-void doEncoderA(){
-  if (digitalRead(encoder0PinA) == HIGH) {   // found a low-to-high on channel A
-    if (digitalRead(encoder0PinB) == LOW) {  // check channel B to see which way
-                                             // encoder is moving
-      encoder0Pos = encoder0Pos + stepSize;   // up
-      //  digitalWrite(statusOutA, HIGH);
-        //digitalWrite(statusOutB, LOW); 
-       // digitalWrite(directionUp, HIGH);     
-    } 
-    else {
-      encoder0Pos = encoder0Pos - stepSize; //down 
-       // digitalWrite(statusOutA, HIGH);
-       // digitalWrite(statusOutB, HIGH);      
-       // digitalWrite(directionUp, LOW);
-    }
-  }
-  else                                        // found a high-to-low on channel A
-  { 
-    if (digitalRead(encoder0PinB) == HIGH) {   // check channel B to see which way
-                                              // encoder is turning  
-      encoder0Pos = encoder0Pos + stepSize;   // up
-      //  digitalWrite(statusOutA, LOW);
-      //  digitalWrite(statusOutB, HIGH);
-      //  digitalWrite(directionUp, HIGH);      
-    } 
-    else {
-      encoder0Pos = encoder0Pos - stepSize;   // down
-     //  digitalWrite(statusOutA, LOW);
-     //  digitalWrite(statusOutB, LOW);  
-     //  digitalWrite(directionUp, LOW);     
-    }
-
-  }
- // Serial.println (encoder0Pos, DEC);          // debug - remember to comment out
- //number = number + 1;
-                                              // before final program run
-  // you don't want serial slowing down your program if not needed
-}
-
-
-
-void doEncoderB(){
-  if (digitalRead(encoder0PinB) == HIGH) {   // found a low-to-high on channel A
-    if (digitalRead(encoder0PinA) == LOW) {  // check channel B to see which way
-                                             // encoder is moving
-      encoder0Pos = encoder0Pos - stepSize;   // down
-      //  digitalWrite(statusOutB, HIGH);
-      //  digitalWrite(statusOutA, LOW); 
-      //  digitalWrite(directionUp, LOW);     
-    } 
-    else {
-      encoder0Pos = encoder0Pos + stepSize; //up 
-      //  digitalWrite(statusOutB, HIGH);
-      //  digitalWrite(statusOutA, HIGH);      
-      //  digitalWrite(directionUp, HIGH);
-    }
-  }
-  else                                        // found a high-to-low on channel A
-  { 
-    if (digitalRead(encoder0PinA) == LOW) {   // check channel B to see which way
-                                              // encoder is turning  
-      encoder0Pos = encoder0Pos + stepSize;   // up
-      //  digitalWrite(statusOutA, LOW);
-      //  digitalWrite(statusOutB, LOW);
-      //  digitalWrite(directionUp, HIGH);      
-    } 
-    else {
-      encoder0Pos = encoder0Pos - stepSize;   // down
-      // digitalWrite(statusOutA, HIGH);
-      // digitalWrite(statusOutB, LOW);  
-      // digitalWrite(directionUp, LOW);     
-    }
-
-  }
-//  number = number + 1;
-// Serial.println (encoder0Pos, DEC);       
-}
-
-
-
+/*
 void motorA(int mode, int percent)
 {
-  
   //change the percentage range of 0 -> 100 into the PWM
   //range of 0 -> 255 using the map function
   int duty = map(percent, 0, 162, 0, 255);
@@ -195,7 +113,7 @@ void motorA(int mode, int percent)
   switch(mode)
   {
     case 0:  //disable/coast
-      digitalWrite(fiveVoltPin, LOW);  //set enable low to disable A
+      digitalWrite(fiveVolt, LOW);  //set enable low to disable A
       break;
       
     case 1:  //turn clockwise
@@ -206,7 +124,7 @@ void motorA(int mode, int percent)
       digitalWrite(INB, LOW);  
       
       //use pwm to control motor speed through enable pin
-      analogWrite(fiveVoltPin, duty);  
+      analogWrite(fiveVolt, duty);  
       
       break;
       
@@ -218,7 +136,7 @@ void motorA(int mode, int percent)
       digitalWrite(INB, HIGH);  
       
       //use pwm to control motor speed through enable pin
-      analogWrite(fiveVoltPin, duty);  
+      analogWrite(fiveVolt, duty);  
       
       break;
       
@@ -231,10 +149,137 @@ void motorA(int mode, int percent)
       
       //use pwm to control motor braking power 
       //through enable pin
-      analogWrite(fiveVoltPin, duty);  
+      analogWrite(fiveVolt, duty);  
       
       break;
   }
 }
+*/
+void doEncoder0ChanelA(){
+  if (digitalRead(encoder0PinA) == HIGH) 
+  {// found a low-to-high on channel A
+    
+    // check channel B to see which way
+    if (digitalRead(encoder0PinB) == LOW) 
+    {// Clockwise
+      encoder0Pos = encoder0Pos + stepSize;        
+    } 
+    else 
+    {//Conterclockwise
+      encoder0Pos = encoder0Pos - stepSize; //down 
+    }
+  }
+  else                                        
+  { // Found a high-to-low on channel A
+  
+    // check channel B to see which way
+    if (digitalRead(encoder0PinB) == HIGH) 
+    { // Clockwise
+      encoder0Pos = encoder0Pos + stepSize;
+    } 
+    else 
+    { // Counterclockwise
+      encoder0Pos = encoder0Pos - stepSize;   // down    
+    }
+  }
+ // Serial.println (encoder0Pos, DEC);          // debug - remember to comment out
+                                              // before final program run
+}
 
+void doEncoder0ChanelB(){
+  
+  if (digitalRead(encoder0PinB) == HIGH) 
+  { // Found a low-to-high on channel A
+  
+    // check channel B to see which way
+    if (digitalRead(encoder0PinA) == LOW) 
+    { // Counterclockwise
+      encoder0Pos = encoder0Pos - stepSize;    
+    } 
+    else 
+    { // Clockwise
+      encoder0Pos = encoder0Pos + stepSize;  
+    }
+  }
+  
+  else   
+  { // Found a high-to-low on channel A
+  
+    // Check channel B to see which way
+    if (digitalRead(encoder0PinA) == LOW) 
+    { // clockwise  
+      encoder0Pos = encoder0Pos + stepSize; 
+    } 
+    else 
+    { // Counterclockwise
+      encoder0Pos = encoder0Pos - stepSize;       
+    }
+
+  }
+// Serial.println (encoder0Pos, DEC);       
+}
+
+void doEncoder1ChanelA(){
+  if (digitalRead(encoder1PinA) == HIGH) 
+  {// found a low-to-high on channel A
+    
+    // check channel B to see which way
+    if (digitalRead(encoder1PinB) == LOW) 
+    {// Clockwise
+      encoder1Pos = encoder1Pos + stepSize;        
+    } 
+    else 
+    {//Conterclockwise
+      encoder1Pos = encoder1Pos - stepSize; //down 
+    }
+  }
+  else                                        
+  { // Found a high-to-low on channel A
+  
+    // check channel B to see which way
+    if (digitalRead(encoder1PinB) == HIGH) 
+    { // Clockwise
+      encoder1Pos = encoder1Pos + stepSize;
+    } 
+    else 
+    { // Counterclockwise
+      encoder1Pos = encoder1Pos - stepSize;   // down    
+    }
+  }
+ // Serial.println (encoder0Pos, DEC);          // debug - remember to comment out
+                                              // before final program run
+}
+
+void doEncoder1ChanelB(){
+  
+  if (digitalRead(encoder1PinB) == HIGH) 
+  { // Found a low-to-high on channel A
+  
+    // check channel B to see which way
+    if (digitalRead(encoder1PinA) == LOW) 
+    { // Counterclockwise
+      encoder1Pos = encoder1Pos - stepSize;    
+    } 
+    else 
+    { // Clockwise
+      encoder1Pos = encoder1Pos + stepSize;  
+    }
+  }
+  
+  else   
+  { // Found a high-to-low on channel A
+  
+    // Check channel B to see which way
+    if (digitalRead(encoder1PinA) == LOW) 
+    { // clockwise  
+      encoder1Pos = encoder1Pos + stepSize; 
+    } 
+    else 
+    { // Counterclockwise
+      encoder1Pos = encoder1Pos - stepSize;       
+    }
+
+  }
+// Serial.println (encoder0Pos, DEC);       
+}
 
