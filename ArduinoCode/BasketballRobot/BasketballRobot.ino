@@ -18,9 +18,9 @@ const int encoder1PinB = 47;
 int encoder1Pos = 0;
 
 // Encoder Pins
-//int INA = 7;
-//int INB = 8;
-//int fiveVolt = 6;
+int INA = 7;
+int INB = 8;
+int fiveVolt = 6;
 
 int stepSize = 3;
 int servoPin = 9;
@@ -48,8 +48,8 @@ void setup() {
   attachInterrupt(47, doEncoder1ChanelB, CHANGE);
   
   //pinMode(fiveVolt, OUTPUT);
-  //pinMode(INA, OUTPUT);
-  //pinMode(INB, OUTPUT);
+  pinMode(INA, OUTPUT);
+  pinMode(INB, OUTPUT);
   
   Serial.begin (9600);
   
@@ -77,7 +77,7 @@ void loop(){
   }
   
   Serial.println(encoder1Pos);
-  //motorA(1,encoder1Pos);
+  motorA(1,encoder1Pos/3);
   
   // Convert int velocity to char*
   //String velocityString = String(velocity);
@@ -282,4 +282,65 @@ void doEncoder1ChanelB(){
   }
 // Serial.println (encoder0Pos, DEC);       
 }
+
+void motorA(int mode, int duty)
+{
+  
+  //change the percentage range of 0 -> 100 into the PWM
+  //range of 0 -> 255 using the map function
+  //int duty = map(percent, 0, 162, 0, 255);
+  
+  if (duty > 1023)
+    duty = 1023;
+  
+  switch(mode)
+  {
+    case 0:  //disable/coast
+      //digitalWrite(fiveVolt, LOW);  //set enable low to disable A
+      analogWrite(INA, 0);
+      analogWrite(INB, 0);
+      break;
+      
+    case 1:  //turn clockwise
+      //setting IN1 high connects motor lead 1 to +voltage
+      //digitalWrite(INA, HIGH);   
+      analogWrite(INA, duty);
+      analogWrite(INB, 0);
+      //setting IN2 low connects motor lead 2 to ground
+      //digitalWrite(INB, LOW);  
+      
+      //use pwm to control motor speed through enable pin
+      //analogWrite(fiveVolt, duty);  
+      
+      break;
+      
+    case 2:  //turn counter-clockwise
+      //setting IN1 low connects motor lead 1 to ground
+      //digitalWrite(INA, LOW);   
+      analogWrite(INA, 0);
+      analogWrite(INB, duty);
+      //setting IN2 high connects motor lead 2 to +voltage
+      //digitalWrite(INB, HIGH);  
+      
+      //use pwm to control motor speed through enable pin
+      //analogWrite(fiveVolt, duty);  
+      
+      break;
+      
+    case 3:  //brake motor
+      //setting IN1 low connects motor lead 1 to ground
+      //digitalWrite(INA, LOW);   
+      analogWrite(INA, 0);
+      analogWrite(INB, 0);
+      //setting IN2 high connects motor lead 2 to ground
+      //digitalWrite(INB, LOW);  
+      
+      //use pwm to control motor braking power 
+      //through enable pin
+      //analogWrite(fiveVolt, duty);  
+      
+      break;
+  }
+}
+
 
