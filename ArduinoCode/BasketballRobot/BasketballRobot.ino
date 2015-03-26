@@ -20,7 +20,7 @@ int encoder1Pos = 0;
 // Encoder Pins
 int INA = 7;
 int INB = 8;
-int fiveVolt = 6;
+//int fiveVolt = 6;
 
 int stepSize = 3;
 int servoPin = 9;
@@ -48,6 +48,8 @@ void setup() {
   attachInterrupt(47, doEncoder1ChanelB, CHANGE);
   
   //pinMode(fiveVolt, OUTPUT);
+  
+  // Motor controller
   pinMode(INA, OUTPUT);
   pinMode(INB, OUTPUT);
   
@@ -63,19 +65,20 @@ void loop(){
   delay(timestep);
   //position2 = encoder0Pos;
   //velocity = (position2-position1)/(timestep*.001*3);
+  
   //Serial.println (encoder0Pos, DEC); 
   //Serial.println (velocity, DEC); 
   //Serial.println (encoder0Pos, DEC);     
+  
+  // Encoder0 controlls the hight. Thus, it position cannot be negative.
   if (encoder0Pos < 0) 
   {
     encoder0Pos = 0;
   }
   
-  if (encoder1Pos < 0)
-  {
-    encoder1Pos = 0;
-  }
-  
+  servo.write(encoder0Pos+5);
+
+  // Controlling safts speed.
   Serial.println(encoder1Pos);
   motorA(1,encoder1Pos/3);
   
@@ -84,7 +87,6 @@ void loop(){
   //String positionString = String(encoder0Pos);
   //String stringToSend = velocityString + '-' + positionString + '\n';
   
-  servo.write(encoder0Pos+5);
   //Serial.println(stringToSend);
   
   // Code ot send the position to the iPad
@@ -103,61 +105,10 @@ void loop(){
   */
 }
 
-/*
-void motorA(int mode, int percent)
-{
-  //change the percentage range of 0 -> 100 into the PWM
-  //range of 0 -> 255 using the map function
-  int duty = map(percent, 0, 162, 0, 255);
-  
-  switch(mode)
-  {
-    case 0:  //disable/coast
-      digitalWrite(fiveVolt, LOW);  //set enable low to disable A
-      break;
-      
-    case 1:  //turn clockwise
-      //setting IN1 high connects motor lead 1 to +voltage
-      digitalWrite(INA, HIGH);   
-      
-      //setting IN2 low connects motor lead 2 to ground
-      digitalWrite(INB, LOW);  
-      
-      //use pwm to control motor speed through enable pin
-      analogWrite(fiveVolt, duty);  
-      
-      break;
-      
-    case 2:  //turn counter-clockwise
-      //setting IN1 low connects motor lead 1 to ground
-      digitalWrite(INA, LOW);   
-      
-      //setting IN2 high connects motor lead 2 to +voltage
-      digitalWrite(INB, HIGH);  
-      
-      //use pwm to control motor speed through enable pin
-      analogWrite(fiveVolt, duty);  
-      
-      break;
-      
-    case 3:  //brake motor
-      //setting IN1 low connects motor lead 1 to ground
-      digitalWrite(INA, LOW);   
-      
-      //setting IN2 high connects motor lead 2 to ground
-      digitalWrite(INB, LOW);  
-      
-      //use pwm to control motor braking power 
-      //through enable pin
-      analogWrite(fiveVolt, duty);  
-      
-      break;
-  }
-}
-*/
+
 void doEncoder0ChanelA(){
   if (digitalRead(encoder0PinA) == HIGH) 
-  {// found a low-to-high on channel A
+  {// Found a low-to-high on channel A
     
     // check channel B to see which way
     if (digitalRead(encoder0PinB) == LOW) 
@@ -166,7 +117,7 @@ void doEncoder0ChanelA(){
     } 
     else 
     {//Conterclockwise
-      encoder0Pos = encoder0Pos - stepSize; //down 
+      encoder0Pos = encoder0Pos - stepSize;
     }
   }
   else                                        
@@ -179,11 +130,9 @@ void doEncoder0ChanelA(){
     } 
     else 
     { // Counterclockwise
-      encoder0Pos = encoder0Pos - stepSize;   // down    
+      encoder0Pos = encoder0Pos - stepSize;   
     }
   }
- // Serial.println (encoder0Pos, DEC);          // debug - remember to comment out
-                                              // before final program run
 }
 
 void doEncoder0ChanelB(){
@@ -191,7 +140,7 @@ void doEncoder0ChanelB(){
   if (digitalRead(encoder0PinB) == HIGH) 
   { // Found a low-to-high on channel A
   
-    // check channel B to see which way
+    // Check channel B to see which way
     if (digitalRead(encoder0PinA) == LOW) 
     { // Counterclockwise
       encoder0Pos = encoder0Pos - stepSize;    
@@ -216,7 +165,6 @@ void doEncoder0ChanelB(){
     }
 
   }
-// Serial.println (encoder0Pos, DEC);       
 }
 
 void doEncoder1ChanelA(){
@@ -230,7 +178,7 @@ void doEncoder1ChanelA(){
     } 
     else 
     {//Conterclockwise
-      encoder1Pos = encoder1Pos - stepSize; //down 
+      encoder1Pos = encoder1Pos - stepSize;
     }
   }
   else                                        
@@ -243,11 +191,9 @@ void doEncoder1ChanelA(){
     } 
     else 
     { // Counterclockwise
-      encoder1Pos = encoder1Pos - stepSize;   // down    
+      encoder1Pos = encoder1Pos - stepSize; 
     }
   }
- // Serial.println (encoder0Pos, DEC);          // debug - remember to comment out
-                                              // before final program run
 }
 
 void doEncoder1ChanelB(){
@@ -271,7 +217,7 @@ void doEncoder1ChanelB(){
   
     // Check channel B to see which way
     if (digitalRead(encoder1PinA) == LOW) 
-    { // clockwise  
+    { // Clockwise  
       encoder1Pos = encoder1Pos + stepSize; 
     } 
     else 
@@ -280,19 +226,14 @@ void doEncoder1ChanelB(){
     }
 
   }
-// Serial.println (encoder0Pos, DEC);       
 }
 
 void motorA(int mode, int duty)
-{
-  
-  //change the percentage range of 0 -> 100 into the PWM
-  //range of 0 -> 255 using the map function
-  //int duty = map(percent, 0, 162, 0, 255);
-  
+{ 
   if (duty > 1023)
     duty = 1023;
   
+  // TODO: Not too sure what is the difference between switch case 0 and 3
   switch(mode)
   {
     case 0:  //disable/coast
@@ -301,30 +242,16 @@ void motorA(int mode, int duty)
       analogWrite(INB, 0);
       break;
       
-    case 1:  //turn clockwise
-      //setting IN1 high connects motor lead 1 to +voltage
-      //digitalWrite(INA, HIGH);   
+    case 1:  //turn clockwise?
       analogWrite(INA, duty);
       analogWrite(INB, 0);
-      //setting IN2 low connects motor lead 2 to ground
-      //digitalWrite(INB, LOW);  
-      
-      //use pwm to control motor speed through enable pin
-      //analogWrite(fiveVolt, duty);  
-      
+            
       break;
       
     case 2:  //turn counter-clockwise
-      //setting IN1 low connects motor lead 1 to ground
-      //digitalWrite(INA, LOW);   
       analogWrite(INA, 0);
       analogWrite(INB, duty);
-      //setting IN2 high connects motor lead 2 to +voltage
-      //digitalWrite(INB, HIGH);  
-      
-      //use pwm to control motor speed through enable pin
-      //analogWrite(fiveVolt, duty);  
-      
+            
       break;
       
     case 3:  //brake motor
