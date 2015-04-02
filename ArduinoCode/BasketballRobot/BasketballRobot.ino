@@ -1,9 +1,9 @@
 #include <Servo.h>
-//#include <SPI.h>
-//#include <boards.h>
-//#include <ble_shield.h>
-//#include <services.h>
-//#include <RBL_nRF8001.h>
+#include <SPI.h>
+#include <boards.h>
+#include <ble_shield.h>
+#include <services.h>
+#include <RBL_nRF8001.h>
 
 // char* to send thorugh bluetooth
 const int MAX_SIZE = 10;
@@ -13,8 +13,8 @@ const int encoder0PinA = 2;
 const int encoder0PinB = 3;
 int encoder0Pos = 0;
 
-const int encoder1PinA = 51;
-const int encoder1PinB = 47;
+const int encoder1PinA = 21;
+const int encoder1PinB = 20;
 int encoder1Pos = 0;
 
 // Encoder Pins
@@ -26,7 +26,7 @@ int stepSize = 3;
 int servoPin = 9;
 Servo servo;
 
-int timestep = 50;
+int timestep = 40;
 
 
 void setup() { 
@@ -34,24 +34,29 @@ void setup() {
   // Setting up servo
   servo.attach(servoPin);
 
-  // Setting up bluetooth
-  //ble_set_name("BRC");
-  //ble_begin();
+  pinMode(encoder0PinA, INPUT); 
+  pinMode(encoder0PinB, INPUT); 
+  pinMode(encoder1PinA, INPUT); 
+  pinMode(encoder1PinB, INPUT); 
 
-  // chanel A (encoder 0) interrupts to pin 0
-  attachInterrupt(2, doEncoder0ChanelA, CHANGE);
-  // chanel B (encoder 0) interrupts to pin 3
-  attachInterrupt(3, doEncoder0ChanelB, CHANGE);
-  // chanel A (encoder 1) interrupts to pin 4
-  attachInterrupt(51, doEncoder1ChanelA, CHANGE);
-  // chanel B (encoder 1) interrupts to pin 5
-  attachInterrupt(47, doEncoder1ChanelB, CHANGE);
+  // chanel A (encoder 0) interrupts to pin 21
+  attachInterrupt(0, doEncoder0ChanelA, CHANGE);
+  // chanel B (encoder 0) interrupts to pin 20
+  attachInterrupt(1, doEncoder0ChanelB, CHANGE);
+  // chanel A (encoder 1) interrupts to pin 2
+  attachInterrupt(2, doEncoder1ChanelA, CHANGE);
+  // chanel B (encoder 1) interrupts to pin 3
+  attachInterrupt(3, doEncoder1ChanelB, CHANGE);
   
   //pinMode(fiveVolt, OUTPUT);
   
   // Motor controller
   pinMode(INA, OUTPUT);
   pinMode(INB, OUTPUT);
+  
+  // Setting up bluetooth
+  ble_set_name("BRC");
+  ble_begin();
   
   Serial.begin (9600);
   
@@ -75,6 +80,10 @@ void loop(){
   {
     encoder0Pos = 0;
   }
+  if (encoder0Pos >162)
+  {
+     encoder0Pos = 162;
+  }
   
   servo.write(encoder0Pos+5);
 
@@ -84,25 +93,24 @@ void loop(){
   
   // Convert int velocity to char*
   //String velocityString = String(velocity);
-  //String positionString = String(encoder0Pos);
+  String positionString = String(encoder1Pos);
   //String stringToSend = velocityString + '-' + positionString + '\n';
   
   //Serial.println(stringToSend);
   
   // Code ot send the position to the iPad
-  /*
   for (int i = 0; i < positionString.length() && MAX_SIZE; i++)
   {
-    toSend[i] = stringToSend[i];
+    toSend[i] = positionString[i];
   }
   
   if (ble_connected())
   {
-    ble_write_bytes(toSend, stringToSend.length());
+    ble_write_bytes(toSend, positionString.length());
   }
   
   ble_do_events();
-  */
+  
 }
 
 
@@ -230,8 +238,8 @@ void doEncoder1ChanelB(){
 
 void motorA(int mode, int duty)
 { 
-  if (duty > 1023)
-    duty = 1023;
+  if (duty > 255)
+    duty = 255;
   
   // TODO: Not too sure what is the difference between switch case 0 and 3
   switch(mode)

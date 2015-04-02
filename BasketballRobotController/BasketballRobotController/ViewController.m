@@ -76,6 +76,14 @@
     NSData* input_data = [NSData dataWithBytes:data length:length];
     NSString* parsed_str = [[NSString alloc] initWithData:input_data encoding:NSUTF8StringEncoding];
     
+    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber* distance = [formatter numberFromString:parsed_str];
+    
+    // Setting the representation of the robot
+    [self SetLabelBackgroundOn:distance.intValue];
+    [self SetLabelBackgroundOff:distance.integerValue];
+    /*
     NSString* velocity_str = [[NSString alloc] init];
     NSString* position_str = [[NSString alloc] init];
 
@@ -111,6 +119,7 @@
     // Setting the representation of the robot
     [self SetLabelBackgroundOn:distance.intValue];
     [self SetLabelBackgroundOff:distance.integerValue];
+     */
 }
 
 // Connecting to BRC (basketball robot controler) bluetooth.
@@ -135,7 +144,7 @@
         {
             CBPeripheral* peripheral = [m_ble_endpoint.peripherals objectAtIndex:i];
             
-            if ([peripheral.name isEqualToString:@"BRC"])
+            if ([peripheral.name isEqualToString:@"ev9"])
             {
                 [m_ble_endpoint connectPeripheral:[m_ble_endpoint.peripherals objectAtIndex:i]];
             }

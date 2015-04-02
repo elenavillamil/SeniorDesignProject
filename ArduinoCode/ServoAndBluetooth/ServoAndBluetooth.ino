@@ -1,12 +1,15 @@
-#include <ble_shield.h>
+//#include <~/Documents/Arduino/libraries/ble_shield.h>
+
 #include <boards.h>
 #include <RBL_nRF8001.h>
-#include <services.h>
+//#include <services.h>
 #include <Servo.h>
 #include <SPI.h>
 
-#define SERVO_PIN 5
+#define SERVO_PIN 9
 #define MAX_SIZE 4
+
+#include <EEPROM.h>
 
 Servo servo;
 
