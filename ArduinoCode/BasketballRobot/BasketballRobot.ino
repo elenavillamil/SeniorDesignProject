@@ -1,9 +1,8 @@
-#include <Servo.h>
-#include <SPI.h>
-#include <boards.h>
-#include <ble_shield.h>
-#include <services.h>
-#include <RBL_nRF8001.h>
+//#include <SPI.h>
+//#include <boards.h>
+//#include <ble_shield.h>
+//#include <services.h>
+//#include <RBL_nRF8001.h>
 
 // char* to send thorugh bluetooth
 const int MAX_SIZE = 10;
@@ -24,34 +23,37 @@ int INB = 8;
 // Each interrupt corresponds to 3 milimiters.
 int stepSize = 3;
 
-int servoPin = 9;
-Servo servo;
-
 int timestep = 40;
 
 // Keep track of time.
-int time = 0;
+long double time = 0;
+
+signed int RC = 0;
+signed int YC = 0;
+signed int E = 0;
+signed int E0 = 0;
+signed int E1 = 0;
+signed int E2 = 0;
+signed int intE = 0;
+signed int duty = 0;
+
+// revolution/second
+const int W = 3;
+const double DT = 0.005; 
+double KP = 2;
+double KD = 1;
+double KI = 0.1;
+
+int loopDelay = 0;
 
 
 void setup() { 
  
-  // Setting up servo
-  servo.attach(servoPin);
-
   pinMode(encoder0PinA, INPUT); 
   pinMode(encoder0PinB, INPUT); 
   pinMode(encoder1PinA, INPUT); 
   pinMode(encoder1PinB, INPUT); 
 
-<<<<<<< HEAD
-  // chanel A (encoder 0) interrupts to pin 21
-  attachInterrupt(0, doEncoder0ChanelA, CHANGE);
-  // chanel B (encoder 0) interrupts to pin 20
-  attachInterrupt(1, doEncoder0ChanelB, CHANGE);
-  // chanel A (encoder 1) interrupts to pin 2
-  attachInterrupt(2, doEncoder1ChanelA, CHANGE);
-  // chanel B (encoder 1) interrupts to pin 3
-=======
   // chanel A (encoder 0) interrupts to pin 0
   attachInterrupt(0, doEncoder0ChanelA, CHANGE);
   // chanel B (encoder 0) interrupts to pin 3
@@ -59,7 +61,6 @@ void setup() {
   // chanel A (encoder 1) interrupts to pin 4
   attachInterrupt(2, doEncoder1ChanelA, CHANGE);
   // chanel B (encoder 1) interrupts to pin 5
->>>>>>> 7f8459919761f1f7355eb13451af6b0c3075bb18
   attachInterrupt(3, doEncoder1ChanelB, CHANGE);
   
   //pinMode(fiveVolt, OUTPUT);
@@ -69,10 +70,10 @@ void setup() {
   pinMode(INB, OUTPUT);
   
   // Setting up bluetooth
-  ble_set_name("BRC");
-  ble_begin();
+  //ble_set_name("BRC");
+  //ble_begin();
   
-  Serial.begin (9600);
+  Serial.begin (115200);
   
   //Serial.println("start");                // a personal quirk
 } 
@@ -88,26 +89,32 @@ void loop(){
   {
     encoder0Pos = 0;
   }
-  if (encoder0Pos >162)
+  if (encoder0Pos > 162)
   {
      encoder0Pos = 162;
   }
   
-  servo.write(encoder0Pos+5);
-
-  // Controlling motor speed.
-  //Serial.println(encoder1Pos);
-  motorA(1,encoder1Pos/3);
-  
-  // Ensure each loop takes 5 miliseconds.
-  while(millis() % 5 != 0)
+  if(loopDelay<=900)
   {
+    time = 0;
+    loopDelay++;
   }
-    
-  time += 0.005;
+  // Controlling motor speed.
+  RC = W * time * 1023;
+  YC = encoder1Pos * 1023 / 4/ 218;
+  E = RC - YC;
+  intE = intE + E*DT;
+  duty = KP*E + KD*(E - (E0 + E1 + E2)/3) / DT + KI*intE;
+  
+  //Serial.println(encoder1Pos);
+  motorA();
+  
+  E2 = E1;
+  E1 = E0;
+  E0 = E;
   
   //////////////////////  BLE CODE  ////////////////////////////////
-  
+  /*
   // Convert int velocity to char*
   //String velocityString = String(velocity);
   String positionString = String(encoder1Pos);
@@ -127,7 +134,13 @@ void loop(){
   }
   
   ble_do_events();
-  
+  */
+
+  time += 0.005;  
+  // Ensure each loop takes 5 miliseconds.
+  while(millis() % 5 != 0)
+  {
+  }
 }
 
 
@@ -253,16 +266,11 @@ void doEncoder1ChanelB(){
   }
 }
 
-void motorA(int mode, int duty)
+void motorA()
 { 
-<<<<<<< HEAD
-  if (duty > 255)
-    duty = 255;
-=======
   // Duty has to be between -1023 <= duty >= 1023
   if (duty > 1023)
     duty = 1023;
->>>>>>> 7f8459919761f1f7355eb13451af6b0c3075bb18
   
   if (duty < -1023)
     duty = -1023;
