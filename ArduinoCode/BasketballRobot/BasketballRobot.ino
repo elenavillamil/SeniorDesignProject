@@ -1,9 +1,9 @@
 #include <Servo.h>
-//#include <SPI.h>
-//#include <boards.h>
-//#include <ble_shield.h>
-//#include <services.h>
-//#include <RBL_nRF8001.h>
+#include <SPI.h>
+#include <boards.h>
+#include <ble_shield.h>
+#include <services.h>
+#include <RBL_nRF8001.h>
 
 // char* to send thorugh bluetooth
 const int MAX_SIZE = 10;
@@ -13,20 +13,24 @@ const int encoder0PinA = 2;
 const int encoder0PinB = 3;
 int encoder0Pos = 0;
 
-const int encoder1PinA = 51;
-const int encoder1PinB = 47;
+const int encoder1PinA = 21;
+const int encoder1PinB = 20;
 int encoder1Pos = 0;
 
-// Encoder Pins
+// Motor Controller Pins
 int INA = 7;
 int INB = 8;
-//int fiveVolt = 6;
 
+// Each interrupt corresponds to 3 milimiters.
 int stepSize = 3;
+
 int servoPin = 9;
 Servo servo;
 
 int timestep = 50;
+
+// Keep track of time.
+int time = 0;
 
 
 void setup() { 
@@ -39,13 +43,13 @@ void setup() {
   //ble_begin();
 
   // chanel A (encoder 0) interrupts to pin 0
-  attachInterrupt(2, doEncoder0ChanelA, CHANGE);
+  attachInterrupt(0, doEncoder0ChanelA, CHANGE);
   // chanel B (encoder 0) interrupts to pin 3
-  attachInterrupt(3, doEncoder0ChanelB, CHANGE);
+  attachInterrupt(1, doEncoder0ChanelB, CHANGE);
   // chanel A (encoder 1) interrupts to pin 4
-  attachInterrupt(51, doEncoder1ChanelA, CHANGE);
+  attachInterrupt(2, doEncoder1ChanelA, CHANGE);
   // chanel B (encoder 1) interrupts to pin 5
-  attachInterrupt(47, doEncoder1ChanelB, CHANGE);
+  attachInterrupt(3, doEncoder1ChanelB, CHANGE);
   
   //pinMode(fiveVolt, OUTPUT);
   
@@ -60,17 +64,11 @@ void setup() {
 
 void loop(){
   
-  // Get velocity
-  //position1=encoder0Pos;
-  delay(timestep);
-  //position2 = encoder0Pos;
-  //velocity = (position2-position1)/(timestep*.001*3);
-  
   //Serial.println (encoder0Pos, DEC); 
   //Serial.println (velocity, DEC); 
   //Serial.println (encoder0Pos, DEC);     
   
-  // Encoder0 controlls the hight. Thus, it position cannot be negative.
+  // Encoder0 controlls the hight. Thus, its position cannot be negative.
   if (encoder0Pos < 0) 
   {
     encoder0Pos = 0;
@@ -78,9 +76,18 @@ void loop(){
   
   servo.write(encoder0Pos+5);
 
-  // Controlling safts speed.
-  Serial.println(encoder1Pos);
+  // Controlling motor speed.
+  //Serial.println(encoder1Pos);
   motorA(1,encoder1Pos/3);
+  
+  // Ensure each loop takes 5 miliseconds.
+  while(millis() % 5 != 0)
+  {
+  }
+    
+  time += 0.005;
+  
+  //////////////////////  BLE CODE  ////////////////////////////////
   
   // Convert int velocity to char*
   //String velocityString = String(velocity);
@@ -174,11 +181,11 @@ void doEncoder1ChanelA(){
     // check channel B to see which way
     if (digitalRead(encoder1PinB) == LOW) 
     {// Clockwise
-      encoder1Pos = encoder1Pos + stepSize;        
+      encoder1Pos += 1;        
     } 
     else 
     {//Conterclockwise
-      encoder1Pos = encoder1Pos - stepSize;
+      encoder1Pos -= 1;
     }
   }
   else                                        
@@ -187,11 +194,11 @@ void doEncoder1ChanelA(){
     // check channel B to see which way
     if (digitalRead(encoder1PinB) == HIGH) 
     { // Clockwise
-      encoder1Pos = encoder1Pos + stepSize;
+      encoder1Pos += 1;
     } 
     else 
     { // Counterclockwise
-      encoder1Pos = encoder1Pos - stepSize; 
+      encoder1Pos -= 1; 
     }
   }
 }
@@ -204,11 +211,11 @@ void doEncoder1ChanelB(){
     // check channel B to see which way
     if (digitalRead(encoder1PinA) == LOW) 
     { // Counterclockwise
-      encoder1Pos = encoder1Pos - stepSize;    
+      encoder1Pos -= 1;    
     } 
     else 
     { // Clockwise
-      encoder1Pos = encoder1Pos + stepSize;  
+      encoder1Pos += 1;  
     }
   }
   
@@ -218,11 +225,11 @@ void doEncoder1ChanelB(){
     // Check channel B to see which way
     if (digitalRead(encoder1PinA) == LOW) 
     { // Clockwise  
-      encoder1Pos = encoder1Pos + stepSize; 
+      encoder1Pos += 1; 
     } 
     else 
     { // Counterclockwise
-      encoder1Pos = encoder1Pos - stepSize;       
+      encoder1Pos -= 1;       
     }
 
   }
@@ -230,43 +237,28 @@ void doEncoder1ChanelB(){
 
 void motorA(int mode, int duty)
 { 
+  // Duty has to be between -1023 <= duty >= 1023
   if (duty > 1023)
     duty = 1023;
   
-  // TODO: Not too sure what is the difference between switch case 0 and 3
-  switch(mode)
+  if (duty < -1023)
+    duty = -1023;
+    
+  if (duty < 0)
   {
-    case 0:  //disable/coast
-      //digitalWrite(fiveVolt, LOW);  //set enable low to disable A
-      analogWrite(INA, 0);
-      analogWrite(INB, 0);
-      break;
-      
-    case 1:  //turn clockwise?
-      analogWrite(INA, duty);
-      analogWrite(INB, 0);
-            
-      break;
-      
-    case 2:  //turn counter-clockwise
-      analogWrite(INA, 0);
-      analogWrite(INB, duty);
-            
-      break;
-      
-    case 3:  //brake motor
-      //setting IN1 low connects motor lead 1 to ground
-      //digitalWrite(INA, LOW);   
-      analogWrite(INA, 0);
-      analogWrite(INB, 0);
-      //setting IN2 high connects motor lead 2 to ground
-      //digitalWrite(INB, LOW);  
-      
-      //use pwm to control motor braking power 
-      //through enable pin
-      //analogWrite(fiveVolt, duty);  
-      
-      break;
+    //turn counter-clockwise
+    analogWrite(INA, 0);
+    analogWrite(INB, -duty);
+  }
+  else if (duty > 0)
+  {
+    analogWrite(INA, duty);
+    analogWrite(INB, 0);
+  }
+  else
+  {
+    analogWrite(INA, 0);
+    analogWrite(INB, 0);
   }
 }
 
