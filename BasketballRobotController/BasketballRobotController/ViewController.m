@@ -64,6 +64,9 @@
     self._bluetooth_connection = false;
     self._can_set_height = false;
     
+    [self SetLabelBackgroundOn:0];
+    [self SetLabelBackgroundOff:0];
+    
     [self SetMainColors:(self._grey_color)];
 
     // Functionality to reconnect
@@ -74,15 +77,20 @@
 - (void) bleDidReceiveData:(unsigned char *)data length:(int)length
 {
     NSData* input_data = [NSData dataWithBytes:data length:length];
-    NSString* parsed_str = [[NSString alloc] initWithData:input_data encoding:NSUTF8StringEncoding];
+
+    unsigned char dataBuffer[1] = { 0 };
     
-    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber* distance = [formatter numberFromString:parsed_str];
-    
+    [input_data getBytes:dataBuffer length:sizeof(char) * 1];
+    int height = dataBuffer[0];
+
+    //NSLog(@"%i", height);
+
     // Setting the representation of the robot
-    [self SetLabelBackgroundOn:distance.intValue];
-    [self SetLabelBackgroundOff:distance.integerValue];
+    [self SetLabelBackgroundOn:height];
+    [self SetLabelBackgroundOff:height];
+    
+    self._height.text = [[NSString alloc] initWithFormat:@"%d", height];
+    
     /*
     NSString* velocity_str = [[NSString alloc] init];
     NSString* position_str = [[NSString alloc] init];
@@ -144,7 +152,7 @@
         {
             CBPeripheral* peripheral = [m_ble_endpoint.peripherals objectAtIndex:i];
             
-            if ([peripheral.name isEqualToString:@"ev9"])
+            if ([peripheral.name isEqualToString:@"BRC"])
             {
                 [m_ble_endpoint connectPeripheral:[m_ble_endpoint.peripherals objectAtIndex:i]];
             }
