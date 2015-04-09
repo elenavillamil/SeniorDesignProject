@@ -46,25 +46,27 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *_connection_label;
 
+@property (weak, nonatomic) IBOutlet UILabel *_five_cm_label;
+
 @property (weak, nonatomic) IBOutlet UILabel *_ten_cm_label;
+
+@property (weak, nonatomic) IBOutlet UILabel *_fifteen_cm_label;
 
 @property (weak, nonatomic) IBOutlet UILabel *_twenty_cm_label;
 
+@property (weak, nonatomic) IBOutlet UILabel *_twenty_five_cm_label;
+
 @property (weak, nonatomic) IBOutlet UILabel *_thirty_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_forty_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_thirty_five_cm_label;
+
+@property (weak, nonatomic) IBOutlet UILabel *_fourty_cm_label;
+
+@property (weak, nonatomic) IBOutlet UILabel *_fourty_five_cm_label;
 
 @property (weak, nonatomic) IBOutlet UILabel *_fifty_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_sixty_cm_label;
-
-@property (weak, nonatomic) IBOutlet UILabel *_seventy_cm_label;
-
-@property (weak, nonatomic) IBOutlet UILabel *_eighty_cm_label;
-
-@property (weak, nonatomic) IBOutlet UILabel *_ninety_cm_label;
-
-@property (weak, nonatomic) IBOutlet UILabel *_hundred_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_fifty_five_cm_label;
 
 //@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_ten_cm_label;
 

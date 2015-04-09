@@ -91,49 +91,12 @@
     
     self._height.text = [[NSString alloc] initWithFormat:@"%d", height];
     
-    /*
-    NSString* velocity_str = [[NSString alloc] init];
-    NSString* position_str = [[NSString alloc] init];
-
-    // Debug log
-    NSLog(@"%@", parsed_str);
-    
-    int i = 0;
-    while([parsed_str characterAtIndex:i] != '-')
-    {
-        i++;
-    }
-    
-    int j = i + 1;
-    
-    while([parsed_str characterAtIndex:j] != '\n')
-    {
-        j++;
-    }
-    
-    velocity_str = [parsed_str substringToIndex:i];
-    NSRange positionRange = NSMakeRange(i+1, j - 1 - i);
-    
-    position_str = [parsed_str substringWithRange:positionRange];
-    
-    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber* distance = [formatter numberFromString:position_str];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self._velocity.text = velocity_str;
-    });
-    
-    // Setting the representation of the robot
-    [self SetLabelBackgroundOn:distance.intValue];
-    [self SetLabelBackgroundOff:distance.integerValue];
-     */
 }
 
 // Connecting to BRC (basketball robot controler) bluetooth.
 - (void) bleConnect:(id) param
 {
-    //self._status.text = @"Connecting...";
+    self._status.text = @"Connecting...";
     
     [NSThread sleepForTimeInterval:.5f];
     
@@ -171,7 +134,9 @@
         self._set_heigth_label.text = [[NSString alloc] initWithFormat:@"%d", current_value];
         
         // Getting the height in a byte so it can be send
-        NSData* data_to_send = [NSData dataWithBytes:&current_value length: 1];
+        unsigned char height = (char)current_value;
+
+        NSData* data_to_send = [NSData dataWithBytes:&height length: sizeof(char) * 1];
         
         //Sending the new slider value to the Arduino
         [m_ble_endpoint write:data_to_send];
@@ -204,6 +169,14 @@
     
         [self._off_on_button setBackgroundColor:[UIColor greenColor]];
         [self._off_on_button setTitle:@"On" forState:UIControlStateNormal];
+        
+        // Send off command to the arduino
+        unsigned char to_send = (char)150;
+        
+        NSData* data_to_send = [NSData dataWithBytes:&to_send length: sizeof(char) * 1];
+        
+        //Sending the new slider value to the Arduino
+        [m_ble_endpoint write:data_to_send];
 
     }
     else
@@ -242,52 +215,38 @@
 // Sets to green the height values that are smaller than the value passed in.
 - (void) SetLabelBackgroundOn:(NSInteger)value
 {
+    if (value >= 5)
+        self._five_cm_label.backgroundColor = self._green_color;
+    
     if (value >= 10)
         self._ten_cm_label.backgroundColor = self._green_color;
+    
+    if (value >= 15)
+        self._fifteen_cm_label.backgroundColor = self._green_color;
     
     if (value >= 20)
         self._twenty_cm_label.backgroundColor = self._green_color;
     
+    if (value >= 25)
+        self._twenty_five_cm_label.backgroundColor = self._green_color;
+    
     if (value >= 30)
         self._thirty_cm_label.backgroundColor = self._green_color;
     
+    if (value >= 35)
+        self._thirty_five_cm_label.backgroundColor = self._green_color;
+    
     if (value >= 40)
-        self._forty_cm_label.backgroundColor = self._green_color;
+        self._fourty_cm_label.backgroundColor = self._green_color;
+    
+    if (value >= 45)
+        self._fourty_five_cm_label.backgroundColor = self._green_color;
     
     if (value >= 50)
         self._fifty_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 60)
-        self._sixty_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 70)
-        self._seventy_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 80)
-        self._eighty_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 90)
-        self._ninety_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 100)
-        self._hundred_cm_label.backgroundColor = self._green_color;
-    
-    /*
-    if (value >= 110)
-        self._hundred_and_ten_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 120)
-        self._hundred_and_twenty_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 130)
-        self._hundred_and_thirty_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 140)
-        self._hundred_and_forty_cm_label.backgroundColor = self._green_color;
-    
-    if (value >= 150)
-        self._hundred_and_fifty_cm_label.backgroundColor = self._green_color;
-     */
+    if (value >= 55)
+        self._fifty_five_cm_label.backgroundColor = self._green_color;
 }
 
 // Sets to white the height values that are bigger than the number passed in.
@@ -306,26 +265,28 @@
         self._hundred_and_ten_cm_label.backgroundColor = [UIColor whiteColor];
      */
     
-    if (value < 100)
-        self._hundred_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 90)
-        self._ninety_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 80)
-        self._eighty_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 70)
-        self._seventy_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 60)
-        self._sixty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 55)
+        self._fifty_five_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 50)
         self._fifty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 45)
+        self._fourty_five_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 40)
-        self._forty_cm_label.backgroundColor = [UIColor whiteColor];
+        self._fourty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 35)
+        self._thirty_five_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 30)
         self._thirty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 25)
+        self._twenty_five_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 20)
         self._twenty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 15)
+        self._fifteen_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 10)
         self._ten_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 5)
+        self._five_cm_label.backgroundColor = [UIColor whiteColor];
 }
 
 @end
