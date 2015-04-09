@@ -12,59 +12,45 @@ const int MAX_SIZE = 6;
 unsigned char toSend[MAX_SIZE];
 HardwareSerial com = Serial;
 
+int count = 0;
+
 void setup() { 
 
   // Setting up bluetooth
   ble_set_name("BRC");
   ble_begin();
 
-  Serial.begin (57600);
+  Serial.begin (115200);
   
   // Set the data rate for the SoftwareSerial port
   //mySerial.begin(115200);
 } 
 
 void loop(){
-  /*
-  int incoming = Serial.available();
-  while (incoming != 0)                 //While there is something to be read
-  {
-    int val = Serial.parseInt();             //Reads integers as integer rather than ASCI. Anything else returns 0
-    val = val + 5;
-    Serial.print(val);                  //Send the new val back to the Tx 
-    incoming = Serial.available();    
-  }
-  */
-  
-  
+    
   if (Serial.available())
   {
     toSend[0] = Serial.read();
     //delay(100);
-    //Serial.println((int)toSend[0]);
-    
-  //////////////////////  BLE CODE  ////////////////////////////////
-  
-  // Convert int velocity to char*
-   //String velocityString = String(velocity);
-   //String positionString = String();
-   //String stringToSend = velocityString + '-' + positionString + '\n';
+    Serial.println((int)toSend[0]);
    
-   //Serial.println(stringToSend);
+    count += 1;
    
-   // Code ot send the position to the iPad
-   //for (int i = 0; i < positionString.length() && MAX_SIZE; i++)
-   //{
-     //toSend[i] = positionString[i];
-   //}
-   
-     if (ble_connected())
-     {
-       ble_write_bytes(toSend, sizeof(char) * 1);
-     }
+    if (count == 5)
+    {
+      count = 0;
+     
+      if (ble_connected())
+      {
+        ble_write_bytes(toSend, sizeof(char) * 1);
+      }
+    }
+     
   }
+
+  //while (fmod(millis(), 50)!=0);
    
-   ble_do_events();
+  ble_do_events();
    
 }
 

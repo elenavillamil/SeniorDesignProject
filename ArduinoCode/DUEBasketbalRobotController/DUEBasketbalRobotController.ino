@@ -1,7 +1,5 @@
 #include <math.h>
 
-//SoftwareSerial mySerial(10, 11); // RX, TX
-
 const int MAX_SIZE = 6;
 unsigned char toSend[MAX_SIZE];
 
@@ -18,7 +16,7 @@ int INA = 5;
 int INB = 7;
 
 // Each interrupt corresponds to 3 milimiters.
-int stepSize = 3;
+int stepSize = 366;
 long start=0;
 int timestep = 40;
 
@@ -43,9 +41,12 @@ double KI =0.001;
 
 int loopDelay = 0;
 
+int count = 0;
 
 void setup() { 
   
+  //Serial.println(encoder0Pos);
+
   analogWriteResolution(10);
   
   pinMode(encoder0PinA, INPUT); 
@@ -68,8 +69,8 @@ void setup() {
   pinMode(INA, OUTPUT);
   pinMode(INB, OUTPUT);
 
-  Serial1.begin (57600);
-  
+  Serial1.begin (115200);
+  Serial.begin(115200);
   // Set the data rate for the SoftwareSerial port
   //mySerial.begin(115200);
 
@@ -78,6 +79,7 @@ void setup() {
 
 void loop(){
 
+  /*
   if(tog==0){
     digitalWrite(24, LOW);
     tog=1;
@@ -86,10 +88,13 @@ void loop(){
     digitalWrite(24, HIGH); 
     tog=0;
   }
+  */
+  
   //Serial.println (velocity, DEC); 
   //Serial.println (encoder0Pos, DEC);     
 
   // Encoder0 controlls the hight. Thus, its position cannot be negative.
+  /*
   if (encoder0Pos < 0) 
   {
     encoder0Pos = 0;
@@ -98,11 +103,30 @@ void loop(){
   {
     encoder0Pos = 162;
   }
+  */
   
+  /*
+  if (encoder1Pos < 0) 
+  {
+    encoder1Pos = 0;
+  }
+  if (encoder1Pos > 162)
+  {
+    encoder1Pos = 162;
+  }
+  */
   // Sending new height to the arduino UNO to transmit to the iPad
-  toSend[0] = encode0Pos;
-  Serial1.write(toSend[0]);
-
+  
+  count += 1;
+  if (count == 5)
+  {
+    count = 0;
+    
+    Serial.println(encoder0Pos/100);
+    toSend[0] = encoder0Pos/100;
+    Serial1.write(toSend[0]);
+  }
+  
   if(loopDelay<=900)
   {
     t = 0;
@@ -127,13 +151,13 @@ void loop(){
   t += 0.005;  
   // Ensure each loop takes 5 miliseconds.
   // while (fmod(millis(), 5)!=0);
-  while (millis() - start < 7) 
+  while (millis() - start < 5) 
   {
         // busy wating
   }
   // do NOT read again as this would cummulate the drift
   // instead add just one second to start
-  start += 7;
+  start += 5;
 }
 
 
