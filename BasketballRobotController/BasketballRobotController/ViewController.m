@@ -58,6 +58,14 @@
     self._bluetooth_connection = true;
     self._can_set_height = true;
     
+    // Send off command to the arduino
+    unsigned char to_send = (char)0;
+    
+    NSData* data_to_send = [NSData dataWithBytes:&to_send length: sizeof(char) * 1];
+    
+    //Sending the new slider value to the Arduino
+    [m_ble_endpoint write:data_to_send];
+    
 }
 
 -(void) bleDidDisconnect

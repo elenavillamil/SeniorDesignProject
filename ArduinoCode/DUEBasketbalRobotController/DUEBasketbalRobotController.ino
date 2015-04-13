@@ -104,10 +104,15 @@ void loop(){
       robot_status = false;
     }
     
-    if (new_height == 0)
+    else if (new_height == 0)
     {
       Serial.println("Turning On");
       robot_status = true;
+    }
+    
+    else
+    {
+      Serial.println("Ignoring Value for now");
     }
   }
   

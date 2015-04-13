@@ -54,6 +54,14 @@ void loop(){
     
     Serial.write(data_received);
   }
+  
+ 
+  if(!ble_connected())
+  {
+    unsigned char data_to_send = (char)200;
+    Serial.write(data_to_send);
+  }
+  
 
   //while (fmod(millis(), 50)!=0);
    
