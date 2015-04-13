@@ -125,7 +125,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yB3-08-nLG">
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yB3-08-nLG">
                                 <rect key="frame" x="52" y="464" width="329" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="325" id="diy-7K-j9I"/>
@@ -143,7 +143,8 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="onHeightSliderValueChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mSD-QD-YyG"/>
+                                    <action selector="onHeightSliderValueChangeInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rt0-ll-q1N"/>
+                                    <action selector="onHeightSliderValueChangeOutside:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="JWF-yZ-oO9"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xG2-aA-l4E">
@@ -443,7 +444,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJN-Lx-SkU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJN-Lx-SkU">
                                 <rect key="frame" x="192" y="524" width="64" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="KmC-fD-Gh7"/>
@@ -1048,6 +1049,7 @@
                         <outlet property="_connection_label" destination="nfd-5a-qaJ" id="fcs-q7-Fuq"/>
                         <outlet property="_fifteen_cm_label" destination="bFs-sc-uVU" id="6Sy-gt-gDR"/>
                         <outlet property="_fifty_cm_label" destination="Bdk-k2-2MO" id="cah-X2-YFI"/>
+                        <outlet property="_fifty_five_cm_label" destination="CkO-R0-75T" id="fDT-Ue-DOX"/>
                         <outlet property="_five_cm_label" destination="Uc8-e3-tkl" id="2xT-hd-DIE"/>
                         <outlet property="_fourty_cm_label" destination="GCn-ab-yxq" id="dm2-0F-0od"/>
                         <outlet property="_fourty_five_cm_label" destination="KhF-Bs-RTI" id="ngr-gh-Y8L"/>
@@ -1065,7 +1067,6 @@
                         <outlet property="_twenty_five_cm_label" destination="Ma0-KP-CjY" id="fzh-Do-buO"/>
                         <outlet property="_velocity" destination="isb-ci-b3E" id="110-XR-P3s"/>
                         <outlet property="_velocity_label" destination="VHU-2E-Xqi" id="RLn-yl-nei"/>
-                        <outlet property="fifty_five_cm_label" destination="CkO-R0-75T" id="kUe-iu-2Y7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

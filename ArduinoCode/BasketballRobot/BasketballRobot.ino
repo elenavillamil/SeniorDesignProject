@@ -32,7 +32,7 @@ void loop(){
   {
     toSend[0] = Serial.read();
     //delay(100);
-    Serial.println((int)toSend[0]);
+    //Serial.println((int)toSend[0]);
    
     count += 1;
    
@@ -46,6 +46,13 @@ void loop(){
       }
     }
      
+  }
+  
+  if (ble_available())
+  {
+    unsigned char data_received = ble_read();
+    
+    Serial.write(data_received);
   }
 
   //while (fmod(millis(), 50)!=0);

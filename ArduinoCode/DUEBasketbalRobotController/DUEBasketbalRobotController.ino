@@ -3,9 +3,11 @@
 const int MAX_SIZE = 6;
 unsigned char toSend[MAX_SIZE];
 
+double stepSize = .366;
+
 const int encoder0PinA = 12;
 const int encoder0PinB = 13;
-int encoder0Pos = 0;
+double encoder0Pos = 28*stepSize;
 
 const int encoder1PinA = 21;
 const int encoder1PinB = 20;
@@ -16,7 +18,6 @@ int INA = 5;
 int INB = 7;
 
 // Each interrupt corresponds to 3 milimiters.
-int stepSize = 366;
 long start=0;
 int timestep = 40;
 
@@ -42,6 +43,8 @@ double KI =0.001;
 int loopDelay = 0;
 
 int count = 0;
+
+bool robot_status = true;
 
 void setup() { 
   
@@ -90,78 +93,81 @@ void loop(){
   }
   */
   
-  //Serial.println (velocity, DEC); 
-  //Serial.println (encoder0Pos, DEC);     
-
-  // Encoder0 controlls the hight. Thus, its position cannot be negative.
-  /*
-  if (encoder0Pos < 0) 
+  if (Serial1.available())
   {
-    encoder0Pos = 0;
-  }
-  if (encoder0Pos > 162)
-  {
-    encoder0Pos = 162;
-  }
-  */
-  
-  /*
-  if (encoder1Pos < 0) 
-  {
-    encoder1Pos = 0;
-  }
-  if (encoder1Pos > 162)
-  {
-    encoder1Pos = 162;
-  }
-  */
-  // Sending new height to the arduino UNO to transmit to the iPad
-  
-  count += 1;
-  if (count == 5)
-  {
-    count = 0;
+    int new_height = (int) Serial1.read();
     
-    Serial.println(encoder0Pos/100);
-    toSend[0] = encoder0Pos/100;
-    Serial1.write(toSend[0]);
+    if (new_height > 155)
+    {
+      Serial.println("Turning Off");
+      duty = 0;
+      robot_status = false;
+    }
+    
+    if (new_height == 0)
+    {
+      Serial.println("Turning On");
+      robot_status = true;
+    }
   }
   
-  if(loopDelay<=900)
+  // If the user turns off the robot, do not do any of this.
+  if (robot_status)
   {
-    t = 0;
-    loopDelay++;
-  }
-  // Controlling motor speed.
-  RC = 4.5 * t * 1023;
-  YC = (encoder1Pos * 1024 )/ 512;
-  E = RC - YC;
-  intE = intE + E*DT;
-  duty = KP*E + KD*(E - (E0 + E1 + E2)/3) / DT + KI*intE;
+    // Encoder0 controlls the hight. Thus, its position cannot be negative. 
+    if (encoder0Pos > 155)
+    {
+      encoder0Pos = 155;
+    }
 
-  //Serial.println(encoder1Pos);
-  motorA();
+    // Sending new height to the arduino UNO to transmit to the iPad
+    count += 1;
+    if (count == 5)
+    {
+      count = 0;
 
-  E2 = E1;
-  E1 = E0;
-  E0 = E;
-
+      Serial.println(encoder0Pos);
+      toSend[0] = encoder0Pos;
+      Serial1.write(toSend[0]);
+    }
+    
+    if(loopDelay<=900)
+    {
+      t = 0;
+      loopDelay++;
+    }
+    
+    // Controlling motor speed.
+    RC = 4.5 * t * 1023;
+    YC = (encoder1Pos * 1024 )/ 512;
+    E = RC - YC;
+    intE = intE + E*DT;
+    duty = KP*E + KD*(E - (E0 + E1 + E2)/3) / DT + KI*intE;
   
-  //Serial.println (millis()% 5); 
+    //Serial.println(encoder1Pos);
+    motorA();
+  
+    E2 = E1;
+    E1 = E0;
+    E0 = E;
+  }
+
   t += 0.005;  
   // Ensure each loop takes 5 miliseconds.
-  // while (fmod(millis(), 5)!=0);
   while (millis() - start < 5) 
   {
         // busy wating
   }
-  // do NOT read again as this would cummulate the drift
-  // instead add just one second to start
+  
   start += 5;
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//      FUNCTIONS
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void doEncoder0ChanelA(){
   if (digitalRead(encoder0PinA) == HIGH) 

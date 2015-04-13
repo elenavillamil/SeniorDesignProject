@@ -53,21 +53,21 @@
 -(void) bleDidConnect
 {
     self._status.text = @"On";
+    [self SetMainColors:(self._green_color)];
+    
     self._bluetooth_connection = true;
     self._can_set_height = true;
-    [self SetMainColors:(self._green_color)];
+    
 }
 
 -(void) bleDidDisconnect
 {
     self._status.text = @"Disconnected.";
-    self._bluetooth_connection = false;
-    self._can_set_height = false;
-    
+    [self SetMainColors:(self._grey_color)];
     [self SetLabelBackgroundOn:0];
     [self SetLabelBackgroundOff:0];
-    
-    [self SetMainColors:(self._grey_color)];
+    self._bluetooth_connection = false;
+    self._can_set_height = false;
 
     // Functionality to reconnect
     [self bleConnect:nil];
@@ -124,8 +124,7 @@
     }
 }
 
-- (IBAction)onHeightSliderValueChange:(id)sender {
-    
+- (void) sliderChangedValue {
     if (self._can_set_height)
     {
         int current_value = self._height_slider.value;
@@ -135,7 +134,7 @@
         
         // Getting the height in a byte so it can be send
         unsigned char height = (char)current_value;
-
+        
         NSData* data_to_send = [NSData dataWithBytes:&height length: sizeof(char) * 1];
         
         //Sending the new slider value to the Arduino
@@ -156,6 +155,15 @@
         [alert_view show];
         self._height_slider.value = [self._set_heigth_label.text intValue];
     }
+
+}
+- (IBAction)onHeightSliderValueChangeOutside:(id)sender {
+    [self sliderChangedValue];
+}
+
+- (IBAction)onHeightSliderValueChangeInside:(id)sender {
+    [self sliderChangedValue];
+
 }
 
 - (IBAction)onOffButtonPressed:(id)sender {
@@ -171,19 +179,21 @@
         [self._off_on_button setTitle:@"On" forState:UIControlStateNormal];
         
         // Send off command to the arduino
-        unsigned char to_send = (char)150;
+        unsigned char to_send = (char)200;
         
         NSData* data_to_send = [NSData dataWithBytes:&to_send length: sizeof(char) * 1];
         
         //Sending the new slider value to the Arduino
         [m_ble_endpoint write:data_to_send];
-
+        
+        [self SetMainColors:(self._grey_color)];
+        
     }
     else
     {
         if (!m_ble_endpoint.isConnected)
         {
-            //[self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
+            [self performSelectorInBackground:@selector(bleConnect:) withObject:nil];
         }
         
         self._status.text = @"Connected";
@@ -191,6 +201,17 @@
         self._can_set_height = true;
         [self._off_on_button setBackgroundColor:[UIColor redColor]];
         [self._off_on_button setTitle:@"Off" forState:UIControlStateNormal];
+        
+        // Send off command to the arduino
+        unsigned char to_send = (char)0;
+        
+        NSData* data_to_send = [NSData dataWithBytes:&to_send length: sizeof(char) * 1];
+        
+        //Sending the new slider value to the Arduino
+        [m_ble_endpoint write:data_to_send];
+        
+        [self SetMainColors:(self._green_color)];
+
     }
 }
 
@@ -198,6 +219,7 @@
 // Grey if there app is connected to the robot, and green if there is no connection.
 -(void) SetMainColors:(UIColor*)color
 {
+    
     self._velocity.backgroundColor = color;
     self._acceleration.backgroundColor = color;
     self._height.backgroundColor = color;
