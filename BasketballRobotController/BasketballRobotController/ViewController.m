@@ -86,10 +86,11 @@
 {
     NSData* input_data = [NSData dataWithBytes:data length:length];
 
-    unsigned char dataBuffer[1] = { 0 };
+    unsigned char dataBuffer[1] = {0};
     
     [input_data getBytes:dataBuffer length:sizeof(char) * 1];
     int height = dataBuffer[0];
+    //int velocity = dataBuffer[1];
 
     //NSLog(@"%i", height);
 
@@ -98,7 +99,7 @@
     [self SetLabelBackgroundOff:height];
     
     self._height.text = [[NSString alloc] initWithFormat:@"%d", height];
-    
+    //self._velocity.text = [[NSString alloc] initWithFormat:@"%d", velocity];
 }
 
 // Connecting to BRC (basketball robot controler) bluetooth.
@@ -245,37 +246,37 @@
 // Sets to green the height values that are smaller than the value passed in.
 - (void) SetLabelBackgroundOn:(NSInteger)value
 {
-    if (value >= 5)
+    if (value >= 3)
         self._five_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 10)
+    if (value >= 6)
         self._ten_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 15)
+    if (value >= 9)
         self._fifteen_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 20)
+    if (value >= 12)
         self._twenty_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 25)
+    if (value >= 15)
         self._twenty_five_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 30)
+    if (value >= 18)
         self._thirty_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 35)
+    if (value >= 21)
         self._thirty_five_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 40)
+    if (value >= 24)
         self._fourty_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 45)
+    if (value >= 27)
         self._fourty_five_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 50)
+    if (value >= 30)
         self._fifty_cm_label.backgroundColor = self._green_color;
     
-    if (value >= 55)
+    if (value >= 33)
         self._fifty_five_cm_label.backgroundColor = self._green_color;
 }
 
@@ -295,27 +296,27 @@
         self._hundred_and_ten_cm_label.backgroundColor = [UIColor whiteColor];
      */
     
-    if (value < 55)
+    if (value < 33)
         self._fifty_five_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 50)
-        self._fifty_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 45)
-        self._fourty_five_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 40)
-        self._fourty_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 35)
-        self._thirty_five_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 30)
+        self._fifty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 27)
+        self._fourty_five_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 24)
+        self._fourty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 21)
+        self._thirty_five_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 18)
         self._thirty_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 25)
-        self._twenty_five_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 20)
-        self._twenty_cm_label.backgroundColor = [UIColor whiteColor];
     if (value < 15)
+        self._twenty_five_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 12)
+        self._twenty_cm_label.backgroundColor = [UIColor whiteColor];
+    if (value < 9)
         self._fifteen_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 10)
+    if (value < 6)
         self._ten_cm_label.backgroundColor = [UIColor whiteColor];
-    if (value < 5)
+    if (value < 3)
         self._five_cm_label.backgroundColor = [UIColor whiteColor];
 }
 

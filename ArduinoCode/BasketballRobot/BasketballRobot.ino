@@ -8,7 +8,7 @@
 //SoftwareSerial mySerial(0, 1); // RX, TX
 
 // char* to send thorugh bluetooth
-const int MAX_SIZE = 6;
+const int MAX_SIZE = 2;
 unsigned char toSend[MAX_SIZE];
 HardwareSerial com = Serial;
 
@@ -31,6 +31,7 @@ void loop(){
   if (Serial.available())
   {
     toSend[0] = Serial.read();
+    toSend[1] = Serial.read();
     //delay(100);
     //Serial.println((int)toSend[0]);
    
@@ -42,7 +43,7 @@ void loop(){
      
       if (ble_connected())
       {
-        ble_write_bytes(toSend, sizeof(char) * 1);
+        ble_write_bytes(toSend, sizeof(char) * 2);
       }
     }
      

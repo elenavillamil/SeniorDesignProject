@@ -71,7 +71,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" Velocity:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHU-2E-Xqi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" Velocity (cm/s):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHU-2E-Xqi">
                                 <rect key="frame" x="83" y="282" width="143" height="37"/>
                                 <color key="backgroundColor" red="0.7390309343" green="0.7390309343" blue="0.7390309343" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -201,7 +201,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdk-k2-2MO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdk-k2-2MO">
                                 <rect key="frame" x="465" y="112" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -228,7 +228,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkO-R0-75T">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkO-R0-75T">
                                 <rect key="frame" x="465" y="112" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -248,14 +248,14 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="5mN-oG-URL"/>
-                                        <exclude reference="gZr-bB-6L3"/>
                                         <exclude reference="0hR-Tz-dXV"/>
+                                        <include reference="5mN-oG-URL"/>
                                         <include reference="Joe-nV-L6X"/>
+                                        <exclude reference="gZr-bB-6L3"/>
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhF-Bs-RTI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhF-Bs-RTI">
                                 <rect key="frame" x="465" y="145" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -282,7 +282,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaY-Oo-yi9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaY-Oo-yi9">
                                 <rect key="frame" x="465" y="211" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -309,7 +309,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ma0-KP-CjY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ma0-KP-CjY">
                                 <rect key="frame" x="465" y="277" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -336,7 +336,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvR-VS-UHu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvR-VS-UHu">
                                 <rect key="frame" x="465" y="310" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -363,7 +363,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFs-sc-uVU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFs-sc-uVU">
                                 <rect key="frame" x="465" y="343" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -390,7 +390,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4F-Vp-Sc6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4F-Vp-Sc6">
                                 <rect key="frame" x="465" y="376" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -417,7 +417,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uc8-e3-tkl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uc8-e3-tkl">
                                 <rect key="frame" x="465" y="409" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -502,7 +502,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwp-p2-sqR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwp-p2-sqR">
                                 <rect key="frame" x="465" y="244" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -627,7 +627,7 @@
                                     <action selector="onOffButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Onb-CU-KYe"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCn-ab-yxq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCn-ab-yxq">
                                 <rect key="frame" x="465" y="178" width="52" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -857,16 +857,16 @@
                                 <exclude reference="ZMt-dA-NOJ"/>
                                 <exclude reference="euk-FO-CWo"/>
                                 <exclude reference="pEe-pP-ch8"/>
-                                <exclude reference="VSQ-lW-QwC"/>
-                                <exclude reference="Xk4-Ya-lfJ"/>
-                                <exclude reference="Yqn-tM-pH9"/>
-                                <exclude reference="si4-d2-DCC"/>
-                                <exclude reference="zzf-ZX-aw7"/>
                                 <exclude reference="Kzi-TA-kdz"/>
                                 <exclude reference="f4u-rK-QIS"/>
                                 <exclude reference="mbo-fu-3U5"/>
                                 <exclude reference="qX1-nM-8Pz"/>
                                 <exclude reference="yk3-u8-Y0D"/>
+                                <exclude reference="VSQ-lW-QwC"/>
+                                <exclude reference="Xk4-Ya-lfJ"/>
+                                <exclude reference="Yqn-tM-pH9"/>
+                                <exclude reference="si4-d2-DCC"/>
+                                <exclude reference="zzf-ZX-aw7"/>
                                 <exclude reference="C1c-kB-U1d"/>
                                 <exclude reference="Sku-Yh-SMv"/>
                                 <exclude reference="Uex-ys-6zL"/>
@@ -875,6 +875,14 @@
                                 <exclude reference="UiK-ou-ct1"/>
                                 <exclude reference="XxV-N4-EQI"/>
                                 <exclude reference="age-GG-Op0"/>
+                                <exclude reference="28s-nE-v1V"/>
+                                <exclude reference="7so-nO-OvL"/>
+                                <exclude reference="Ak3-lx-NgU"/>
+                                <exclude reference="C1z-Kx-YKZ"/>
+                                <exclude reference="HNY-8N-haP"/>
+                                <exclude reference="df1-yz-o03"/>
+                                <exclude reference="qxe-yY-qGv"/>
+                                <exclude reference="xPa-wf-Da0"/>
                                 <exclude reference="x1c-sg-2WQ"/>
                                 <exclude reference="LHl-03-ARA"/>
                                 <exclude reference="li3-xV-09Y"/>
@@ -885,14 +893,6 @@
                                 <exclude reference="G4e-8m-feh"/>
                                 <exclude reference="W9F-UC-dbD"/>
                                 <exclude reference="vTz-Pq-cJT"/>
-                                <exclude reference="28s-nE-v1V"/>
-                                <exclude reference="7so-nO-OvL"/>
-                                <exclude reference="Ak3-lx-NgU"/>
-                                <exclude reference="C1z-Kx-YKZ"/>
-                                <exclude reference="HNY-8N-haP"/>
-                                <exclude reference="df1-yz-o03"/>
-                                <exclude reference="qxe-yY-qGv"/>
-                                <exclude reference="xPa-wf-Da0"/>
                                 <exclude reference="PJ1-70-e4X"/>
                                 <exclude reference="mys-wB-2tI"/>
                                 <exclude reference="qxK-TC-aK3"/>
@@ -902,27 +902,27 @@
                                 <exclude reference="m7E-HZ-qTU"/>
                                 <exclude reference="IJI-7v-8bt"/>
                                 <exclude reference="x1T-Ye-get"/>
-                                <exclude reference="C8d-hb-Qtu"/>
-                                <exclude reference="Vgt-52-cjn"/>
-                                <exclude reference="pcu-Am-O8Y"/>
-                                <exclude reference="qf5-O7-AJa"/>
                                 <exclude reference="4eh-kh-sv0"/>
                                 <exclude reference="7kD-hy-Vpi"/>
                                 <exclude reference="KhE-5q-ppB"/>
                                 <exclude reference="UfB-Sc-obF"/>
                                 <exclude reference="duP-Lc-RrR"/>
                                 <exclude reference="jvD-l4-cjq"/>
+                                <exclude reference="C8d-hb-Qtu"/>
+                                <exclude reference="Vgt-52-cjn"/>
+                                <exclude reference="pcu-Am-O8Y"/>
+                                <exclude reference="qf5-O7-AJa"/>
                                 <exclude reference="B3p-hn-HEi"/>
                                 <exclude reference="bD4-fB-Uz7"/>
                                 <exclude reference="cLI-fg-8pn"/>
                                 <exclude reference="wRX-6Q-Bly"/>
                                 <exclude reference="xaB-WC-9Uw"/>
-                                <exclude reference="Ddd-7V-j0w"/>
-                                <exclude reference="UlI-Ee-ngX"/>
                                 <exclude reference="MM2-kW-OBy"/>
                                 <exclude reference="P7n-Am-iNh"/>
                                 <exclude reference="qJk-kC-raw"/>
                                 <exclude reference="rxG-zt-5Zi"/>
+                                <exclude reference="Ddd-7V-j0w"/>
+                                <exclude reference="UlI-Ee-ngX"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -961,16 +961,16 @@
                                 <exclude reference="fad-ql-Ofy"/>
                                 <include reference="pEe-pP-ch8"/>
                                 <exclude reference="xHi-0g-drV"/>
+                                <exclude reference="A15-4y-ivw"/>
+                                <include reference="mbo-fu-3U5"/>
+                                <exclude reference="q3g-xV-EJD"/>
+                                <include reference="qX1-nM-8Pz"/>
                                 <include reference="Xk4-Ya-lfJ"/>
                                 <exclude reference="bGe-oN-b6U"/>
                                 <exclude reference="gZE-Ug-4BS"/>
                                 <exclude reference="qEC-nE-r78"/>
                                 <include reference="si4-d2-DCC"/>
                                 <exclude reference="zeM-cZ-Gfb"/>
-                                <exclude reference="A15-4y-ivw"/>
-                                <include reference="mbo-fu-3U5"/>
-                                <exclude reference="q3g-xV-EJD"/>
-                                <include reference="qX1-nM-8Pz"/>
                                 <exclude reference="7vc-UF-p7a"/>
                                 <exclude reference="Cp9-PJ-Iel"/>
                                 <include reference="Sku-Yh-SMv"/>
@@ -982,6 +982,14 @@
                                 <include reference="XxV-N4-EQI"/>
                                 <exclude reference="xuY-zK-xS3"/>
                                 <exclude reference="yih-0K-oiQ"/>
+                                <include reference="C1z-Kx-YKZ"/>
+                                <include reference="HNY-8N-haP"/>
+                                <include reference="df1-yz-o03"/>
+                                <exclude reference="f3x-xK-Oy9"/>
+                                <exclude reference="hlW-Th-6ZM"/>
+                                <exclude reference="l4y-7K-Ftd"/>
+                                <include reference="qxe-yY-qGv"/>
+                                <include reference="xPa-wf-Da0"/>
                                 <include reference="x1c-sg-2WQ"/>
                                 <exclude reference="6vj-fl-6TM"/>
                                 <include reference="LHl-03-ARA"/>
@@ -994,14 +1002,6 @@
                                 <exclude reference="Gig-Uj-2eE"/>
                                 <include reference="W9F-UC-dbD"/>
                                 <include reference="vTz-Pq-cJT"/>
-                                <include reference="C1z-Kx-YKZ"/>
-                                <include reference="HNY-8N-haP"/>
-                                <include reference="df1-yz-o03"/>
-                                <exclude reference="f3x-xK-Oy9"/>
-                                <exclude reference="hlW-Th-6ZM"/>
-                                <exclude reference="l4y-7K-Ftd"/>
-                                <include reference="qxe-yY-qGv"/>
-                                <include reference="xPa-wf-Da0"/>
                                 <exclude reference="Ihn-CE-BRB"/>
                                 <exclude reference="LyX-Yw-KIR"/>
                                 <include reference="PJ1-70-e4X"/>
@@ -1014,16 +1014,16 @@
                                 <exclude reference="kVJ-eo-2cz"/>
                                 <exclude reference="qfV-4d-V90"/>
                                 <include reference="x1T-Ye-get"/>
-                                <exclude reference="ANN-tW-yrC"/>
-                                <include reference="C8d-hb-Qtu"/>
-                                <exclude reference="kp1-nr-xM2"/>
-                                <include reference="pcu-Am-O8Y"/>
                                 <include reference="7kD-hy-Vpi"/>
                                 <exclude reference="Ejx-OE-qfD"/>
                                 <include reference="KhE-5q-ppB"/>
                                 <exclude reference="VMI-cs-3YC"/>
                                 <exclude reference="ay3-c0-Ntf"/>
                                 <include reference="jvD-l4-cjq"/>
+                                <exclude reference="ANN-tW-yrC"/>
+                                <include reference="C8d-hb-Qtu"/>
+                                <exclude reference="kp1-nr-xM2"/>
+                                <include reference="pcu-Am-O8Y"/>
                                 <include reference="B3p-hn-HEi"/>
                                 <exclude reference="RdG-2Q-80X"/>
                                 <include reference="bD4-fB-Uz7"/>
@@ -1032,14 +1032,14 @@
                                 <include reference="cLI-fg-8pn"/>
                                 <exclude reference="dxo-fw-sz1"/>
                                 <include reference="xaB-WC-9Uw"/>
-                                <exclude reference="1f4-py-ENd"/>
-                                <include reference="Ddd-7V-j0w"/>
-                                <include reference="UlI-Ee-ngX"/>
-                                <exclude reference="VrB-DJ-rOD"/>
                                 <include reference="MM2-kW-OBy"/>
                                 <exclude reference="Z71-UD-B0l"/>
                                 <exclude reference="adq-yQ-6Aw"/>
                                 <include reference="rxG-zt-5Zi"/>
+                                <exclude reference="1f4-py-ENd"/>
+                                <include reference="Ddd-7V-j0w"/>
+                                <include reference="UlI-Ee-ngX"/>
+                                <exclude reference="VrB-DJ-rOD"/>
                             </mask>
                         </variation>
                     </view>

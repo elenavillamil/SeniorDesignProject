@@ -1,6 +1,6 @@
 #include <math.h>
 
-const int MAX_SIZE = 6;
+const int MAX_SIZE = 2;
 unsigned char toSend[MAX_SIZE];
 
 double stepSize = .366;
@@ -8,6 +8,9 @@ double stepSize = .366;
 const int encoder0PinA = 12;
 const int encoder0PinB = 13;
 double encoder0Pos = 28*stepSize;
+double oldEncoder0Pos = 28*stepSize;
+
+double velocity = 0.0;
 
 const int encoder1PinA = 21;
 const int encoder1PinB = 20;
@@ -101,6 +104,7 @@ void loop(){
     {
       Serial.println("Turning Off");
       duty = 0;
+      motorA();
       robot_status = false;
     }
     
@@ -124,6 +128,10 @@ void loop(){
     {
       encoder0Pos = 155;
     }
+    if (encoder0Pos < 0)
+    {
+      encoder0Pos = 0;
+    }
 
     // Sending new height to the arduino UNO to transmit to the iPad
     count += 1;
@@ -132,8 +140,19 @@ void loop(){
       count = 0;
 
       Serial.println(encoder0Pos);
-      toSend[0] = encoder0Pos;
-      Serial1.write(toSend[0]);
+      toSend[0] = (int) encoder0Pos;
+      
+      velocity = (encoder0Pos - oldEncoder0Pos) / (0.005 * 0.001 * 5);
+     
+      if (velocity < 0)
+      {
+        velocity *= -1;
+      }
+      
+      toSend[1] = (int) velocity;
+      
+      oldEncoder0Pos = encoder0Pos;
+      Serial1.write(toSend, 2);
     }
     
     if(loopDelay<=900)
