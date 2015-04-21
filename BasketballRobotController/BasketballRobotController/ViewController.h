@@ -78,7 +78,7 @@
 
 //@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_fifty_cm_label;
 
-- (IBAction)onHeightSliderValueChange:(id)sender;
+- (void)sliderChangedValue;
 
 - (IBAction)onOffButtonPressed:(id)sender;
 

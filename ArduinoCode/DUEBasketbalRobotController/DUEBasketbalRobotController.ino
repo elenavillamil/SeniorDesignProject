@@ -5,12 +5,12 @@ unsigned char toSend[MAX_SIZE];
 
 double stepSize = .366;
 
-const int encoder0PinA = 12;
-const int encoder0PinB = 13;
+const int encoder0PinA = 11;
+const int encoder0PinB = 10;
 double encoder0Pos = 28*stepSize;
-double oldEncoder0Pos = 28*stepSize;
+//double oldEncoder0Pos = 28*stepSize;
 
-double velocity = 0.0;
+//double velocity = 0.0;
 
 const int encoder1PinA = 21;
 const int encoder1PinB = 20;
@@ -61,9 +61,9 @@ void setup() {
   pinMode(encoder1PinB, INPUT); 
   pinMode(24,OUTPUT);
   // chanel A (encoder 0) interrupts to pin 0
-  attachInterrupt(12, doEncoder0ChanelA, CHANGE);
+  attachInterrupt(11, doEncoder0ChanelA, CHANGE);
   // chanel B (encoder 0) interrupts to pin 3
-  attachInterrupt(13, doEncoder0ChanelB, CHANGE);
+  attachInterrupt(10, doEncoder0ChanelB, CHANGE);
   // chanel A (encoder 1) interrupts to pin 4
   attachInterrupt(21, doEncoder1ChanelA, CHANGE);
   // chanel B (encoder 1) interrupts to pin 5
@@ -100,7 +100,7 @@ void loop(){
   {
     int new_height = (int) Serial1.read();
     
-    if (new_height > 155)
+    if (new_height == 200)
     {
       Serial.println("Turning Off");
       duty = 0;
@@ -116,7 +116,12 @@ void loop(){
     
     else
     {
-      Serial.println("Ignoring Value for now");
+      if (new_height >= 10 && new_height <= 50)
+      {
+          Serial.print("Updating W to ");
+          Serial.println(new_height);
+          W = new_height/10;
+      }  
     }
   }
   
@@ -142,16 +147,15 @@ void loop(){
       Serial.println(encoder0Pos);
       toSend[0] = (int) encoder0Pos;
       
-      velocity = (encoder0Pos - oldEncoder0Pos) / (0.005 * 0.001 * 5);
-     
-      if (velocity < 0)
-      {
-        velocity *= -1;
-      }
+      //velocity = (encoder0Pos - oldEncoder0Pos) / (0.005 * 0.001 * 5);
+      //
+      //if (velocity < 0)
+      //{
+        //velocity *= -1;
+      //}
+      //toSend[1] = (int) velocity;
+      //oldEncoder0Pos = encoder0Pos;
       
-      toSend[1] = (int) velocity;
-      
-      oldEncoder0Pos = encoder0Pos;
       Serial1.write(toSend, 2);
     }
     
@@ -162,7 +166,7 @@ void loop(){
     }
     
     // Controlling motor speed.
-    RC = 4.5 * t * 1023;
+    RC = W * t * 1023;
     YC = (encoder1Pos * 1024 )/ 512;
     E = RC - YC;
     intE = intE + E*DT;
