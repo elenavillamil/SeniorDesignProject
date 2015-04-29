@@ -1,7 +1,7 @@
 #include <Servo.h>
 
-const int encoder0PinA = 2;
-const int encoder0PinB = 3;
+const int encoder0PinA = 9;
+const int encoder0PinB = 8;
 
 int encoder0Pos = 0;
 //const int statusOutA = 4;
@@ -35,9 +35,9 @@ void setup() {
 
 
 
-  attachInterrupt(2, doEncoderA, CHANGE);  // encoder interrupt on pin 2
-  attachInterrupt(3, doEncoderB, CHANGE);  // encoder interrupt on pin 3
-  Serial.begin (9600);
+  attachInterrupt(9, doEncoderA, CHANGE);  // encoder interrupt on pin 2
+  attachInterrupt(8, doEncoderB, CHANGE);  // encoder interrupt on pin 3
+  Serial.begin (115200);
   Serial.println("start");                // a personal quirk
  // pinMode(statusOutA, OUTPUT);
  // pinMode(statusOutB, OUTPUT);
@@ -46,6 +46,9 @@ void setup() {
 } 
 
 void loop(){
+  
+  Serial.println(encoder0Pos);
+  /*
   int angle = encoder0Pos+5;
   servo.write(angle);
   if (encoder0Pos <0) {encoder0Pos=0;}
@@ -53,7 +56,7 @@ void loop(){
   servo.write(angle);
   motorA(1,encoder0Pos);
   
-  
+  */
   //position1=encoder0Pos;
   delay(timestep);
   //position2 = encoder0Pos;

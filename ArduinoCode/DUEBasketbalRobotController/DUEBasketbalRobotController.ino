@@ -1,19 +1,16 @@
 #include <math.h>
 
-const int MAX_SIZE = 2;
+const int MAX_SIZE = 6;
 unsigned char toSend[MAX_SIZE];
 
 double stepSize = .366;
 
-const int encoder0PinA = 11;
-const int encoder0PinB = 10;
+const int encoder0PinA = 13;
+const int encoder0PinB = 12;
 double encoder0Pos = 28*stepSize;
-//double oldEncoder0Pos = 28*stepSize;
 
-//double velocity = 0.0;
-
-const int encoder1PinA = 21;
-const int encoder1PinB = 20;
+const int encoder1PinA = 20;
+const int encoder1PinB = 21;
 int encoder1Pos = 0;
 int tog=0;
 // Motor Controller Pins
@@ -37,7 +34,7 @@ signed int intE = 0;
 signed int duty = 0;
 
 // revolution/second
-int W = 1;
+int W = 2.5;
 double DT = 1; 
 double KP = 1;
 double KD = 50;
@@ -47,7 +44,7 @@ int loopDelay = 0;
 
 int count = 0;
 
-bool robot_status = true;
+bool robot_status = false;
 
 void setup() { 
   
@@ -61,13 +58,13 @@ void setup() {
   pinMode(encoder1PinB, INPUT); 
   pinMode(24,OUTPUT);
   // chanel A (encoder 0) interrupts to pin 0
-  attachInterrupt(11, doEncoder0ChanelA, CHANGE);
+  attachInterrupt(13, doEncoder0ChanelA, CHANGE);
   // chanel B (encoder 0) interrupts to pin 3
-  attachInterrupt(10, doEncoder0ChanelB, CHANGE);
+  attachInterrupt(12, doEncoder0ChanelB, CHANGE);
   // chanel A (encoder 1) interrupts to pin 4
-  attachInterrupt(21, doEncoder1ChanelA, CHANGE);
+  attachInterrupt(20, doEncoder1ChanelA, CHANGE);
   // chanel B (encoder 1) interrupts to pin 5
-  attachInterrupt(20, doEncoder1ChanelB, CHANGE);
+  attachInterrupt(21, doEncoder1ChanelB, CHANGE);
 
   //pinMode(fiveVolt, OUTPUT);
 
@@ -95,6 +92,7 @@ void loop(){
     tog=0;
   }
   */
+  Serial.println(encoder0Pos);
   
   if (Serial1.available())
   {
@@ -102,7 +100,10 @@ void loop(){
     
     if (new_height == 200)
     {
-      Serial.println("Turning Off");
+      //Serial.println("Turning Off");
+      t = 0;
+      encoder1Pos = 0; loopDelay=0;
+      RC = 0; YC = 0; E = 0; E0 = 0; E1 = 0; E2 = 0; intE = 0;
       duty = 0;
       motorA();
       robot_status = false;
@@ -111,59 +112,58 @@ void loop(){
     else if (new_height == 0)
     {
       Serial.println("Turning On");
+      t = 0;
+      encoder1Pos = 0; loopDelay=0;
+      RC = 0; YC = 0; E = 0; E0 = 0; E1 = 0; E2 = 0; intE = 0;
+      duty = 0;
       robot_status = true;
     }
     
     else
     {
-      if (new_height >= 10 && new_height <= 50)
+      if (new_height/10 > 0 && new_height/10 < 5)
       {
-          Serial.print("Updating W to ");
-          Serial.println(new_height);
+          Serial.println("Updating W to ");
+          Serial.print(new_height);
           W = new_height/10;
-      }  
+      }
     }
   }
   
   // If the user turns off the robot, do not do any of this.
   if (robot_status)
-  {
+  {  
+    //Serial.print("Status On");
+    
     // Encoder0 controlls the hight. Thus, its position cannot be negative. 
     if (encoder0Pos > 155)
     {
       encoder0Pos = 155;
     }
+
     if (encoder0Pos < 0)
     {
       encoder0Pos = 0;
     }
-
+    
     // Sending new height to the arduino UNO to transmit to the iPad
     count += 1;
     if (count == 5)
     {
       count = 0;
 
-      Serial.println(encoder0Pos);
+      //Serial.println(encoder0Pos);
       toSend[0] = (int) encoder0Pos;
-      
-      //velocity = (encoder0Pos - oldEncoder0Pos) / (0.005 * 0.001 * 5);
-      //
-      //if (velocity < 0)
-      //{
-        //velocity *= -1;
-      //}
-      //toSend[1] = (int) velocity;
-      //oldEncoder0Pos = encoder0Pos;
-      
-      Serial1.write(toSend, 2);
+      Serial1.write(toSend[0]);
     }
+    
     
     if(loopDelay<=900)
     {
       t = 0;
       loopDelay++;
     }
+    
     
     // Controlling motor speed.
     RC = W * t * 1023;
@@ -178,16 +178,16 @@ void loop(){
     E2 = E1;
     E1 = E0;
     E0 = E;
-  }
-
-  t += 0.005;  
-  // Ensure each loop takes 5 miliseconds.
-  while (millis() - start < 5) 
-  {
+    
+    t += 0.005;  
+    // Ensure each loop takes 5 miliseconds.
+    while (millis() - start < 5) 
+    {
         // busy wating
-  }
+    }
   
-  start += 5;
+    start += 5;
+  }
 }
 
 
@@ -198,6 +198,7 @@ void loop(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void doEncoder0ChanelA(){
+  //Serial.print("Encoder 0 Chanel A");
   if (digitalRead(encoder0PinA) == HIGH) 
   {// Found a low-to-high on channel A
 
@@ -227,6 +228,7 @@ void doEncoder0ChanelA(){
 }
 
 void doEncoder0ChanelB(){
+  //Serial.print("Encoder 0 Chanel B");
 
   if (digitalRead(encoder0PinB) == HIGH) 
   { // Found a low-to-high on channel A
@@ -341,6 +343,7 @@ void motorA()
   }
   else
   {
+    //Serial.println("Setting chanels to 0");
     analogWrite(INA, 0);
     analogWrite(INB, 0);
   }

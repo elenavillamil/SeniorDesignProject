@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F364B2931AF06AD900C57A7F /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F364B28E1AF06AD900C57A7F /* JBBarChartView.m */; };
+		F364B2941AF06AD900C57A7F /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F364B2901AF06AD900C57A7F /* JBChartView.m */; };
+		F364B2951AF06AD900C57A7F /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F364B2921AF06AD900C57A7F /* JBLineChartView.m */; };
 		F3817AC01A095C6400485D12 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = F3817ABE1A095C6400485D12 /* BLE.m */; };
 		F3BADAEB1A1BE2E700A2DD3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BADAEA1A1BE2E700A2DD3B /* UIKit.framework */; };
 		F3BADAED1A1BE2EC00A2DD3B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BADAEC1A1BE2EC00A2DD3B /* QuartzCore.framework */; };
@@ -30,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F364B28D1AF06AD900C57A7F /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
+		F364B28E1AF06AD900C57A7F /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
+		F364B28F1AF06AD900C57A7F /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
+		F364B2901AF06AD900C57A7F /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
+		F364B2911AF06AD900C57A7F /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
+		F364B2921AF06AD900C57A7F /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
 		F3817ABD1A095C6400485D12 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		F3817ABE1A095C6400485D12 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		F3817ABF1A095C6400485D12 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
@@ -70,6 +79,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F364B28C1AF06AD900C57A7F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F364B28D1AF06AD900C57A7F /* JBBarChartView.h */,
+				F364B28E1AF06AD900C57A7F /* JBBarChartView.m */,
+				F364B28F1AF06AD900C57A7F /* JBChartView.h */,
+				F364B2901AF06AD900C57A7F /* JBChartView.m */,
+				F364B2911AF06AD900C57A7F /* JBLineChartView.h */,
+				F364B2921AF06AD900C57A7F /* JBLineChartView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		F3817ABC1A095C6400485D12 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +119,7 @@
 				F3EEC5CC1A02B5010051E5B8 /* BasketballRobotController */,
 				F3EEC5E61A02B5020051E5B8 /* BasketballRobotControllerTests */,
 				F3EEC5CB1A02B5010051E5B8 /* Products */,
+				F364B28C1AF06AD900C57A7F /* Classes */,
 				F3817AC21A095CFA00485D12 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -253,6 +276,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3EEC5D61A02B5010051E5B8 /* ViewController.m in Sources */,
+				F364B2941AF06AD900C57A7F /* JBChartView.m in Sources */,
+				F364B2951AF06AD900C57A7F /* JBLineChartView.m in Sources */,
+				F364B2931AF06AD900C57A7F /* JBBarChartView.m in Sources */,
 				F3EEC5D31A02B5010051E5B8 /* AppDelegate.m in Sources */,
 				F3EEC5D01A02B5010051E5B8 /* main.m in Sources */,
 				F3817AC01A095C6400485D12 /* BLE.m in Sources */,

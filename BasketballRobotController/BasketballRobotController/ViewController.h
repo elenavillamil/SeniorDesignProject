@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JBLineChartView.h"
+
 #import "BLE.h"
 
-@interface ViewController : UIViewController <BLEDelegate> {
+@interface ViewController : UIViewController <BLEDelegate, JBLineChartViewDataSource, JBLineChartViewDelegate> {
     BLE* m_ble_endpoint;
 }
 
@@ -46,41 +48,45 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *_connection_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_five_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_three_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_ten_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_six_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_fifteen_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_nine_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_twenty_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_twelve_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_twenty_five_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_fiftheen_cm_label;
+
+@property (weak, nonatomic) IBOutlet UILabel *_eighteen_cm_label;
+
+@property (weak, nonatomic) IBOutlet UILabel *_twenty_first_cm_label;
+
+@property (weak, nonatomic) IBOutlet UILabel *_twenty_four_cm_label;
+
+@property (weak, nonatomic) IBOutlet UILabel *_twenty_seven_cm_label;
 
 @property (weak, nonatomic) IBOutlet UILabel *_thirty_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_thirty_five_cm_label;
-
-@property (weak, nonatomic) IBOutlet UILabel *_fourty_cm_label;
-
+@property (weak, nonatomic) IBOutlet UILabel *_thirty_three_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_thirty_six_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_thirty_nine_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_fourty_two_cm_label;
 @property (weak, nonatomic) IBOutlet UILabel *_fourty_five_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_fourty_eight_cm_label;
+@property (weak, nonatomic) IBOutlet UILabel *_fifty_one_cm_label;
 
-@property (weak, nonatomic) IBOutlet UILabel *_fifty_cm_label;
+@property (retain, nonatomic) NSMutableArray* heights;
 
-@property (weak, nonatomic) IBOutlet UILabel *_fifty_five_cm_label;
-
-//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_ten_cm_label;
-
-//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_twenty_cm_label;
-
-//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_thirty_cm_label;
-
-//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_forty_cm_label;
-
-//@property (weak, nonatomic) IBOutlet UILabel *_hundred_and_fifty_cm_label;
+@property (weak, nonatomic) IBOutlet JBLineChartView *_graph;
+@property (weak, nonatomic) IBOutlet UIButton *_show_graph_button;
 
 - (void)sliderChangedValue;
+- (IBAction)showGraph:(id)sender;
 
 - (IBAction)onOffButtonPressed:(id)sender;
+- (IBAction)onHeightSliderValueChangeOutside:(id)sender;
+- (IBAction)onHeightSliderValueChangeInside:(id)sender;
 
 @end
 
